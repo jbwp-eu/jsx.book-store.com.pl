@@ -1,0 +1,135 @@
+@use "sass:map";
+@use "variables";
+
+// Responsive breakpoints use respond-to() mixin (replaces previous @media screen and (min-width: map.get(variables.$breakpoints, ...))).
+
+.cart {
+  &__group {
+    margin-top: variables.$main-spacing*2;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$main-spacing*0.5;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    border-bottom: 1px solid variables.$color-secondary;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: variables.$main-spacing;
+    padding: variables.$main-spacing;
+
+    &-img {
+      width: 80%;
+
+      @include variables.respond-to(x-sm) {
+        width: variables.$main-spacing*4;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: variables.$color-secondary;
+    }
+
+    a:hover,
+    a.active {
+      text-decoration: underline;
+    }
+
+    h3 {
+      text-wrap: wrap;
+    }
+
+    @include variables.respond-to(x-sm) {
+
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+
+    &-group {
+      display: flex;
+      align-items: center;
+      gap: variables.$main-spacing;
+      justify-content: space-between;
+
+      @include variables.respond-to(sm) {
+        gap: variables.$main-spacing*2;
+      }
+
+      select {
+        width: variables.$main-spacing*2;
+        height: variables.$main-spacing*2;
+        border: 1px solid variables.$color-secondary-bright;
+        border-radius: variables.$main-spacing*0.2;
+        text-align: center;
+
+        &:hover {
+          background: variables.$color-secondary-bright;
+        }
+      }
+
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: variables.$main-spacing*5;
+
+        @include variables.respond-to(sm) {
+          width: variables.$main-spacing*6;
+        }
+      }
+
+      button {
+        border-radius: variables.$main-spacing*0.2;
+        background: variables.$color-secondary-light;
+        border: none;
+        padding: variables.$main-spacing*0.5 variables.$main-spacing*0.6;
+        cursor: pointer;
+
+        &:hover {
+          background: variables.$color-secondary;
+        }
+      }
+    }
+  }
+
+  &__summary {
+    border: 1px solid variables.$color-secondary;
+    box-shadow: 1px 3px 2px variables.$color-secondary;
+    border-radius: variables.$main-spacing*0.3;
+
+    margin-top: variables.$main-spacing;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: variables.$main-spacing;
+    background-color: variables.$color-light;
+    padding: variables.$main-spacing*0.5;
+
+
+    @include variables.respond-to(x-sm) {
+      margin-top: variables.$main-spacing*2;
+      width: 50%;
+      margin-left: auto;
+      align-items: flex-start;
+
+      button {
+        align-self: flex-end;
+      }
+
+    }
+
+    @include variables.respond-to(md) {
+      width: 100%;
+
+    }
+  }
+
+}

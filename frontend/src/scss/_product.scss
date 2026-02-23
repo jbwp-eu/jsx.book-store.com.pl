@@ -1,0 +1,203 @@
+@use "variables";
+
+.product {
+  border: 1px solid variables.$color-secondary;
+  border-radius: variables.$main-spacing*0.3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: variables.$main-spacing*0.5;
+  padding: 2.5%;
+  width: 100%;
+  height: 100%;
+
+  &:hover {
+    scale: 1.01;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  p,
+  h2 {
+    text-align: center;
+  }
+
+  &__detail {
+    border: 1px solid variables.$color-secondary;
+    border-radius: variables.$main-spacing*0.3;
+    box-shadow: 1px 3px 2px variables.$color-secondary;
+    flex-basis: 50%;
+
+
+    &-picture {
+      width: 100%;
+      padding: 2.5%;
+    }
+
+    &-reviews {
+      text-align: center;
+
+      h2 {
+        margin: variables.$main-spacing 0px;
+      }
+
+      li {
+        border-top: 1px solid variables.$color-secondary-bright;
+        padding-top: variables.$main-spacing;
+
+        div {
+          justify-content: center;
+          padding-bottom: variables.$main-spacing*0.5;
+        }
+
+        p+p {
+          font-size: variables.$small-font-size;
+          color: variables.$color-secondary-bright;
+          margin-bottom: variables.$main-spacing;
+        }
+      }
+    }
+
+    &-rating {
+      color: variables.$color-warning;
+      display: flex;
+      align-items: center;
+      padding: variables.$main-spacing 0;
+
+      p {
+        color: variables.$color-secondary;
+        margin-left: variables.$main-spacing*0.5;
+      }
+    }
+
+    &-form {
+
+      h2 {
+        border: 1px solid variables.$color-secondary;
+        padding: variables.$main-spacing*0.5 variables.$main-spacing;
+        background-color: variables.$color-secondary-bright;
+        text-align: center;
+        margin-bottom: variables.$main-spacing*0.5;
+
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: variables.$main-spacing;
+        width: 100%;
+
+        label {
+          width: 100%;
+
+          select {
+            border-radius: variables.$main-spacing*0.3;
+            margin-top: variables.$main-spacing*0.5;
+            width: 100%;
+            height: variables.$main-spacing*2;
+
+          }
+
+          textarea {
+            border-radius: variables.$main-spacing*0.3;
+            margin-top: variables.$main-spacing*0.5;
+            width: 100%;
+            padding: 2px;
+            box-sizing: border-box;
+          }
+        }
+
+        button {
+          align-self: flex-end;
+        }
+      }
+    }
+
+    &-description {
+
+      h1 {
+        border-bottom: 1px solid variables.$color-secondary-bright;
+        padding: variables.$main-spacing 0;
+
+      }
+
+      div+p {
+        border-top: 1px solid variables.$color-secondary-bright;
+        border-bottom: 1px solid variables.$color-secondary-bright;
+        padding: variables.$main-spacing 0;
+      }
+
+      p+p {
+        padding: variables.$main-spacing 0;
+      }
+    }
+
+    &-quantity {
+      display: flex;
+      flex-direction: column;
+
+      p,
+      div {
+        padding: variables.$main-spacing variables.$main-spacing;
+        border-bottom: 1px solid variables.$color-secondary-bright;
+        text-align: center;
+      }
+
+      p {
+        min-width: variables.$main-spacing*8;
+
+      }
+
+      label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: variables.$main-spacing*0.25;
+
+        select {
+          margin-left: variables.$main-spacing*0.5;
+          width: variables.$main-spacing*2;
+          height: variables.$main-spacing*2;
+          border: 1px solid variables.$color-secondary-bright;
+          border-radius: variables.$main-spacing*0.2;
+          text-align: center;
+        }
+      }
+
+      button {
+        margin: variables.$main-spacing auto;
+      }
+
+    }
+  }
+}
+
+// Product detail page layout (ProductDetail.jsx)
+.product-detail {
+  margin-top: variables.$main-spacing*0.5;
+  padding-bottom: variables.$main-spacing;
+
+  &__back {
+    margin: variables.$main-spacing 0;
+    display: inline-flex;
+    align-items: center;
+    gap: variables.$main-spacing*0.5;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$main-spacing;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &--unavailable {
+    padding: variables.$main-spacing*2;
+    text-align: center;
+  }
+}

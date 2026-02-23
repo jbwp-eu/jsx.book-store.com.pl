@@ -1,0 +1,19 @@
+@use "variables";
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$main-spacing;
+
+  &__orders {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$main-spacing;
+    margin-bottom: variables.$main-spacing;
+
+    th,
+    td {
+      font-size: variables.$small-font-size;
+    }
+  }
+}

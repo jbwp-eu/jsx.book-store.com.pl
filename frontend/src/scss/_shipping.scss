@@ -1,0 +1,9 @@
+@use "variables";
+
+.shipping {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$main-spacing;
+  margin: variables.$main-spacing 0;
+  color: variables.$color-secondary;
+}

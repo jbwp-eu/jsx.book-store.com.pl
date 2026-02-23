@@ -1,0 +1,276 @@
+@use "sass:map";
+@use "variables";
+
+// Responsive breakpoints use respond-to() mixin (replaces previous @media screen and (min-width: map.get(variables.$breakpoints, ...))).
+
+.main-header {
+  background-color: variables.$color-secondary;
+
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+
+    a {
+      text-decoration: none;
+      color: variables.$color-secondary-light;
+    }
+
+    a:hover {
+      color: variables.$color-light;
+    }
+
+  }
+
+  &__name {
+    display: flex;
+    padding-left: variables.$main-spacing*0.5;
+    border-radius: variables.$main-spacing*0.5;
+
+  }
+
+  &__name h2 {
+    // outline: 2px solid variables.$color-secondary-light;
+    padding: variables.$main-spacing*0.5 variables.$main-spacing*0.5;
+  }
+
+  &__name:hover {
+    background-color: variables.$color-secondary-light;
+    color: variables.$color-secondary;
+  }
+
+  &__menu-btn {
+    height: variables.$main-spacing*1.6;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-around;
+
+    cursor: pointer;
+
+    span {
+      display: inline-block;
+      width: variables.$main-spacing*1.6;
+      height: variables.$main-spacing*0.15;
+      background-color: variables.$color-secondary-light;
+    }
+
+    @include variables.respond-to(lg) {
+      display: none;
+    }
+  }
+
+  &__nav {
+    display: none;
+
+    @include variables.respond-to(lg) {
+      display: block;
+    }
+  }
+
+
+  &__bottom-nav {
+    display: block;
+    width: 100%;
+
+    @include variables.respond-to(lg) {
+      display: none;
+    }
+  }
+}
+
+.nav-links {
+  margin: variables.$main-spacing 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: variables.$main-spacing;
+
+  li {
+    display: flex;
+    padding: variables.$main-spacing*0 0;
+
+
+
+    @include variables.respond-to(lg) {
+      justify-content: center;
+      align-items: center;
+    }
+
+    a {
+      text-decoration: none;
+      color: variables.$color-secondary-light;
+      display: flex;
+      align-items: center;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: variables.$color-light;
+    }
+
+    button {
+      background-color: variables.$color-secondary;
+      color: variables.$color-secondary-light;
+      border: 0;
+    }
+
+    button:hover {
+      text-decoration: underline;
+    }
+
+
+    form {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin: 0;
+
+      input {
+        height: variables.$main-spacing*2;
+        border-radius: variables.$main-spacing*0.4;
+        border: none;
+      }
+
+      button {
+        color: variables.$color-secondary-light;
+        background-color: transparent;
+        border: 1px solid variables.$color-secondary-light;
+        border-radius: variables.$main-spacing*0.4;
+        align-self: center;
+
+        &:hover {
+          color: variables.$color-secondary;
+          background-color: variables.$color-secondary-light;
+        }
+      }
+    }
+
+    .dropdown {
+      display: flex;
+      flex-direction: column;
+      gap: variables.$main-spacing;
+      width: 100%;
+      padding: variables.$main-spacing*0.5;
+      color: variables.$color-secondary;
+      background-color: variables.$color-secondary-light;
+      border-radius: variables.$main-spacing*0.3;
+      align-items: flex-start;
+
+      a {
+        color: variables.$color-secondary;
+      }
+
+      span:hover {
+        text-decoration: underline;
+      }
+
+      @include variables.respond-to(lg) {
+        position: absolute;
+        top: variables.$main-spacing*1.5;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        gap: variables.$main-spacing;
+        width: variables.$main-spacing*4.5;
+
+        border: 2px solid variables.$color-secondary;
+        border-radius: variables.$main-spacing*0.4;
+        background: variables.$color-light;
+        padding: variables.$main-spacing*0.7;
+        z-index: 10;
+
+        span,
+        span+a {
+          color: variables.$color-secondary
+        }
+
+        span+a:hover {
+          color: variables.$color-secondary
+        }
+      }
+
+    }
+  }
+
+  li:nth-child(3) {
+    min-width: variables.$main-spacing*4;
+    text-align: center;
+  }
+
+  @include variables.respond-to(lg) {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 variables.$main-spacing*0.5;
+    gap: variables.$main-spacing;
+  }
+}
+
+
+.badge {
+  background-color: variables.$color-favourite;
+  border-radius: variables.$main-spacing*0.6;
+  padding: variables.$main-spacing*0.1 variables.$main-spacing*0.6;
+  color: variables.$color-secondary;
+  margin-left: variables.$main-spacing*0.1;
+}
+
+.position {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: variables.$main-spacing*0.5;
+  color: variables.$color-secondary-light;
+  cursor: pointer;
+
+  @include variables.respond-to(sm) {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    color: variables.$color-secondary-light;
+    cursor: pointer;
+
+  }
+
+  &__user {
+    display: flex;
+
+    span {
+      margin-right: variables.$main-spacing*0.2;
+    }
+
+  }
+}
+
+.flag {
+  width: variables.$main-spacing*1.5;
+  margin-right: variables.$main-spacing*0.3;
+
+
+  @include variables.respond-to(md) {
+    margin-left: variables.$main-spacing*0.3;
+    margin-right: 0;
+  }
+}
+
+
+.flag:hover {
+  transform: scale(1.1, 1.1);
+  transition: transform 0.1s;
+  cursor: pointer;
+}
+
+.dropdown--admin {
+  min-height: variables.$main-spacing*5;
+  height: auto;
+  justify-content: flex-start;
+  padding: variables.$main-spacing*0.6 variables.$main-spacing*0.7;
+}

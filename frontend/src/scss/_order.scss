@@ -1,0 +1,143 @@
+@use "sass:map";
+@use "variables";
+
+// Responsive breakpoints use respond-to() mixin (replaces previous @media screen and (min-width: map.get(variables.$breakpoints, ...))).
+
+.order {
+  margin-top: variables.$main-spacing;
+  color: variables.$color-secondary;
+
+  &__information {
+    margin: variables.$main-spacing 0 0 variables.$main-spacing;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$main-spacing;
+
+    h1,
+    p {
+      margin-bottom: variables.$main-spacing*0.5;
+    }
+
+    p {
+      font-weight: 300;
+    }
+
+
+    &-shipping {
+      border-bottom: 1px solid variables.$color-secondary-bright;
+      padding-bottom: variables.$main-spacing;
+    }
+
+    &-payment {
+      border-bottom: 1px solid variables.$color-secondary-bright;
+      padding-bottom: variables.$main-spacing;
+    }
+
+    &-items {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      gap: variables.$main-spacing*0.5;
+      padding-bottom: variables.$main-spacing*0.5;
+      border-bottom: 1px solid variables.$color-secondary-bright;
+
+
+      a {
+        font-weight: 300;
+        color: variables.$color-secondary;
+      }
+
+      p {
+        margin-bottom: 0;
+      }
+
+      @include variables.respond-to(x-sm) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: variables.$main-spacing;
+        gap: variables.$main-spacing*0.5;
+      }
+
+    }
+
+    &-img {
+      width: 80%;
+
+      @include variables.respond-to(x-sm) {
+        height: variables.$main-spacing*5;
+        width: auto;
+      }
+    }
+  }
+
+
+  &__summary {
+    border: 1px solid variables.$color-secondary;
+    box-shadow: 1px 3px 2px variables.$color-secondary;
+    border-radius: variables.$main-spacing*0.3;
+    width: 100%;
+
+
+    @include variables.respond-to(x-sm) {
+      width: 50%;
+      margin-left: auto;
+    }
+
+    @include variables.respond-to(sm) {
+      width: 100%;
+      margin-top: variables.$main-spacing*2;
+    }
+
+    h1 {
+      border-bottom: 1px solid variables.$color-secondary-bright;
+      padding: variables.$main-spacing;
+
+      @include variables.respond-to(sm) {
+        padding: variables.$main-spacing;
+
+      }
+    }
+
+    button {
+      display: block;
+      margin: variables.$main-spacing variables.$main-spacing variables.$main-spacing auto;
+
+      @include variables.respond-to(sm) {
+        margin: variables.$main-spacing variables.$main-spacing variables.$main-spacing auto;
+      }
+    }
+
+    &-items,
+    &-shipping,
+    &-tax,
+    &-total {
+      border-bottom: 1px solid variables.$color-secondary-bright;
+      padding: variables.$main-spacing;
+      font-weight: 300;
+
+      @include variables.respond-to(sm) {
+        padding: variables.$main-spacing;
+      }
+    }
+
+    &-positions {
+      padding: variables.$main-spacing;
+      font-weight: 300;
+      border-bottom: 1px solid variables.$color-secondary-bright;
+    }
+
+    &-paypal {
+      padding: variables.$main-spacing;
+    }
+
+    &-stripe {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+
+
+}

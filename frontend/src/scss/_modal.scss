@@ -1,0 +1,93 @@
+@use "sass:map";
+@use "variables";
+
+// Responsive breakpoints use respond-to() mixin (replaces previous @media screen and (min-width: map.get(variables.$breakpoints, ...))).
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  transform: translate(-50%, -50%);
+  background-color: variables.$color-secondary-light;
+  z-index: 200;
+  border: 1px solid variables.$color-secondary;
+  border-radius: variables.$main-spacing*0.4;
+  box-shadow: 1px 3px 2px variables.$color-secondary;
+  padding: variables.$main-spacing*0.5;
+  opacity: 0;
+
+
+  button {
+    align-self: flex-start;
+  }
+
+
+  @include variables.respond-to(sm) {
+    width: 70%;
+  }
+
+
+  @include variables.respond-to(md) {
+    width: 60%;
+  }
+
+  @include variables.respond-to(lg) {
+    width: 50%;
+  }
+
+  @include variables.respond-to(xl) {
+    width: 40%;
+  }
+
+  @include variables.respond-to(xxl) {
+    width: 30%;
+  }
+}
+
+.modal__contact {
+  animation-name: contact;
+  animation-duration: 1.2s;
+  animation-iteration-count: 1;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes contact {
+  0% {
+    left: 120%;
+    opacity: 1;
+  }
+
+  100% {
+    left: 50%;
+    opacity: 1;
+  }
+}
+
+.modal__map {
+  animation-name: map;
+  animation-duration: 1.2s;
+  animation-iteration-count: 1;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  z-index: 300;
+
+  transform: translate(-50%, -70%);
+
+  button {
+    margin-top: variables.$main-spacing;
+  }
+}
+
+@keyframes map {
+  0% {
+    top: -120%;
+    opacity: 1;
+  }
+
+  100% {
+    top: 65%;
+    opacity: 1;
+  }
+}

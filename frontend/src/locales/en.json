@@ -1,0 +1,227 @@
+{
+  "common": {
+    "error": "Error !",
+    "authError": "Authentication error",
+    "errorOccurred": "An error occurred !",
+    "sending": "Sending...",
+    "sendingData": "Sending data!",
+    "sendingDataShort": "Sending data",
+    "success": "Success !",
+    "goBack": "Go Back",
+    "details": "Details",
+    "update": "Update",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "submitting": "Submitting...",
+    "areYouSure": "Are you sure ?",
+    "markAsDelivered": "Mark as Delivered"
+  },
+  "orderSummary": {
+    "title": "Order Summary",
+    "items": "Items:",
+    "shipping": "Shipping:",
+    "tax": "Tax:",
+    "total": "Total:",
+    "placeOrder": "Place order"
+  },
+  "footer": {
+    "contactForm": "Contact form",
+    "contact": "Contact",
+    "freeShipping": "Free Shipping",
+    "freeShippingDesc": " Free shipping on orders above 200zł",
+    "moneyBack": "Money Back Guarantee",
+    "moneyBackDesc": "Within 14 days of purchase",
+    "flexiblePayment": "Flexible Payment",
+    "flexiblePaymentDesc": "Pay with PayPal or Stripe"
+  },
+  "reviewForm": {
+    "writeReview": "Write a customer review",
+    "rating": "Rating:",
+    "select": "Select ...",
+    "poor": "1 - Poor",
+    "fair": "2 - Fair",
+    "good": "3 - Good",
+    "veryGood": "4 - Very Good",
+    "excellent": "5 - Excellent",
+    "comment": "Comment",
+    "submit": "Submit",
+    "pleaseSignIn": "Please",
+    "signIn": "Sign in",
+    "toWriteReview": " to write a review"
+  },
+  "contact": {
+    "pleaseEnterFirstName": "Please enter first name",
+    "pleaseEnterLastName": "Please enter last name",
+    "pleaseEnterEmail": "Please enter email",
+    "pleaseEnterEmailAddress": "Please enter email address",
+    "emailMustBeValid": "Email address must be a valid address",
+    "pleaseEnterMessage": "Please enter message",
+    "pleaseEnterInformation": "Please enter information",
+    "minCharacters": "Must be 4 characters or more",
+    "contact": "Contact",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "message": "Message",
+    "ourLocation": "Our location",
+    "send": "Send"
+  },
+  "home": {
+    "books": "Books",
+    "noProducts": "There are not any products, will be added soon ..."
+  },
+  "order": {
+    "orderId": "Order id:",
+    "notCreated": "Order has not been created ...",
+    "notPaid": "Not Paid",
+    "paid": "Paid",
+    "paidOn": "Paid on ",
+    "notDelivered": "Not Delivered",
+    "delivered": "Delivered",
+    "deliveredOn": "Delivered on:",
+    "orderItems": "Order Items",
+    "address": "Address:",
+    "name": "Name:",
+    "method": "Method:",
+    "payment": "Payment:",
+    "shippingData": "Shipping"
+  },
+  "admin": {
+    "ordersList": "Orders List",
+    "id": "ID",
+    "user": "USER",
+    "date": "DATE",
+    "total": "TOTAL",
+    "paid": "PAID",
+    "delivered": "DELIVERED",
+    "products": "Products",
+    "createProduct": "Create product",
+    "title": "TITLE",
+    "category": "CATEGORY",
+    "price": "PRICE",
+    "stock": "STOCK",
+    "areYouSureProduct": "Are you sure ?",
+    "createProductConfirm": "Are you sure you want to create a new product?",
+    "noProducts": "There are not any products...",
+    "users": "Users",
+    "name": "NAME",
+    "admin": "ADMIN",
+    "noUsers": "There are not any users",
+    "noOrders": "There are not any orders",
+    "stripeDetails": "Stripe Details",
+    "editUser": "Edit user",
+    "goBack": "Go Back"
+  },
+  "productDetail": {
+    "goBack": "Go Back",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "unavailable": "The book is currently unavailable, will be added soon ...",
+    "status": "Status: ",
+    "quantity": "Quantity:",
+    "addToCart": "Add to Cart"
+  },
+  "payment": {
+    "title": "Payment Method",
+    "selectMethod": "Select Method",
+    "pleaseSelectPayment": "Please select payment method",
+    "proceed": "Proceed"
+  },
+  "shipping": {
+    "title": "Shipping",
+    "pleaseEnterCity": "Please enter city",
+    "pleaseEnterAddress": "Please enter address",
+    "pleaseEnterPostalCode": "Please enter postal code",
+    "pleaseEnterCountry": "Please enter country",
+    "address": "Address",
+    "city": "City",
+    "postalCode": "Postal Code",
+    "country": "Country",
+    "continue": "Continue"
+  },
+  "cart": {
+    "title": "Shopping cart",
+    "empty": "Your cart is empty",
+    "goBack": "Go back",
+    "subtotal": "Subtotal",
+    "items": "items",
+    "proceedToCheckout": "Proceed To Checkout"
+  },
+  "userProfile": {
+    "title": "User Profile",
+    "name": "Name",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "passwordDoNotMatch": "Password do not match",
+    "update": "Update"
+  },
+  "userOrders": {
+    "title": "User Orders",
+    "id": "ID",
+    "date": "DATE",
+    "total": "TOTAL",
+    "paid": "PAID",
+    "delivered": "DELIVERED",
+    "details": "Details",
+    "noOrders": "You have not placed any orders"
+  },
+  "userEditForm": {
+    "title": "Edit user",
+    "name": "Name",
+    "update": "Update"
+  },
+  "userNavDropdown": {
+    "profile": "Profile"
+  },
+  "description": {
+    "reviews_one": "review",
+    "reviews_other": "reviews",
+    "price": "Price:",
+    "description": "Description:",
+    "reviewsTitle": "Reviews",
+    "noReviews": "No reviews"
+  },
+  "navigation": {
+    "signIn": "Sign In",
+    "user": "User:",
+    "admin": "Admin"
+  },
+  "searchBox": {
+    "placeholder": "Search Products ...",
+    "search": "Search"
+  },
+  "checkoutSteps": {
+    "shipping": "Shipping",
+    "payment": "Payment",
+    "placeOrder": "Place Order"
+  },
+  "stripeSuccess": {
+    "success": "Success",
+    "thankYou": "Thank you for your order"
+  },
+  "userProfileForm": {
+    "confirmPasswordPlaceholder": "Confirm password"
+  },
+  "contactValidation": {
+    "pleaseEnterLastName": "Please enter last name",
+    "pleaseEnterEmail": "Please enter email",
+    "pleaseEnterMessage": "Please enter message"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "login": "Login",
+    "register": "Register",
+    "newCustomer": "New Customer ?",
+    "alreadyHaveAccount": "Already have an account ?",
+    "pleaseEnterEmail": "Please enter email address",
+    "pleaseEnterPassword": "Please enter password",
+    "minChars": "Must be 4 characters or more",
+    "enterEmail": "Enter email",
+    "enterPassword": "Enter password",
+    "enterName": "Enter name",
+    "pleaseEnterName": "Please enter name",
+    "name": "Name",
+    "password": "Password",
+    "cancel": "Cancel"
+  }
+}

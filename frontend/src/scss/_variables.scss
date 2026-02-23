@@ -1,0 +1,49 @@
+@use "sass:map";
+
+$base-font-size: 16px;
+$small-font-size: 14px;
+
+$font-family: 'Kanit',
+sans-serif;
+
+$main-spacing: 20px;
+$max-width: 1200px;
+
+
+$color-primary: #052962;
+$color-secondary:#6e757e;
+$color-secondary-bright:#59555540;
+$color-secondary-light:#fefefe;
+$color-info:rgb(214, 234, 248);
+$color-success:#aed6f1;
+$color-danger:rgb(250, 219, 216);
+
+
+$color-warning:#ffe500;
+$color-light:white;
+$color-media:#00b2ff;
+$color-dark:black;
+$color-favourite:#f4b115;
+
+$color-notification: #1a8ed1;
+$color-notification-error: #690000;
+$color-notification-success: #1ad1b9;
+
+$breakpoints: (x-sm: 450px,
+  sm: 576px,
+  /* 540 */
+  md: 768px,
+  /* 720 */
+  lg: 992px,
+  /* 960 */
+  xl: 1200px,
+  /* 1140 */
+  xxl:1400px,
+);
+
+// Mixin used in place of previous inline @media screen and (min-width: map.get(variables.$breakpoints, ...)).
+@mixin respond-to($breakpoint) {
+  @media screen and (min-width: map.get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}

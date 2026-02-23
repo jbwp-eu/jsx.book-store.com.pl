@@ -1,0 +1,47 @@
+@use "variables";
+
+.pagination {
+  ul {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+
+    li {
+      border-top: 1px solid variables.$color-secondary-bright;
+      border-bottom: 1px solid variables.$color-secondary-bright;
+      border-right: 1px solid variables.$color-secondary-bright;
+
+      width: variables.$main-spacing*2;
+      height: variables.$main-spacing*2;
+
+
+
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        text-align: center;
+        line-height: variables.$main-spacing*2-2px;
+        color: variables.$color-secondary;
+      }
+
+      a.active {
+        background-color: variables.$color-secondary-bright;
+      }
+    }
+
+    li:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      border-left: 1px solid variables.$color-secondary-bright;
+    }
+
+    li:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+
+}

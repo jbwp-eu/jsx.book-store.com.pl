@@ -1,0 +1,76 @@
+@use "variables";
+@use "sass:map";
+
+// Responsive breakpoints use respond-to() mixin (replaces previous @media screen and (min-width: map.get(variables.$breakpoints, ...))).
+
+.footer {
+  background-color: variables.$color-secondary;
+  padding: variables.$main-spacing*0.5;
+  ;
+}
+
+.footerList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: variables.$main-spacing;
+  gap: variables.$main-spacing;
+  border: 1px solid variables.$color-secondary-light;
+  border-radius: variables.$main-spacing*0.5;
+
+  @include variables.respond-to(sm) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: variables.$main-spacing*2;
+  }
+
+  // a {
+  //   text-decoration: none;
+  //   color: variables.$color-secondary-light;
+  // }
+
+  // a:hover,
+  // a.active {
+  //   text-decoration: underline;
+  //   color: variables.$color-light;
+  // }
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    button {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 0;
+      margin: 0;
+
+    }
+
+    p {
+      color: white;
+      text-align: left;
+    }
+
+    :nth-child(3) {
+      font-weight: 200;
+      font-size: small;
+    }
+
+  }
+
+
+}
+
+.rights {
+  color: white;
+  text-align: center;
+  font-weight: 100;
+  font-size: small;
+  padding: variables.$main-spacing 0 0;
+
+}

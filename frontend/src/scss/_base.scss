@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "variables";
+
+// Responsive breakpoints use respond-to() mixin (replaces previous @media screen and (min-width: map.get(variables.$breakpoints, ...))).
+
+:focus-visible {
+  outline: 2px solid variables.$color-primary;
+  outline-offset: 2px;
+}
+
+html {
+  background-color: variables.$color-secondary-light;
+}
+
+a,
+button {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.container {
+  max-width: variables.$max-width;
+  margin: 0 auto;
+  padding: variables.$main-spacing*0.5 variables.$main-spacing;
+
+  @include variables.respond-to(md) {
+    padding: variables.$main-spacing*0.5 variables.$main-spacing*3;
+  }
+}
+
+main {
+  min-height: 100vh;
+
+}
+
+.container > a > button {
+  margin: variables.$main-spacing 0;
+}
+
+.container--no-vertical-padding {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+$main-height:80vh;

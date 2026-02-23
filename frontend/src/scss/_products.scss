@@ -1,0 +1,68 @@
+@use "sass:map";
+@use "variables";
+
+// Responsive breakpoints use respond-to() mixin (replaces previous @media screen and (min-width: map.get(variables.$breakpoints, ...))).
+
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$main-spacing*0.5;
+  margin: variables.$main-spacing*0.5 auto;
+  color: variables.$color-secondary;
+  width: 100%;
+
+
+  h1 {
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  button {
+    align-self: flex-end;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: variables.$main-spacing;
+
+    li {
+      width: 100%;
+
+      @include variables.respond-to(x-sm) {
+        max-width: 46%;
+      }
+
+      @include variables.respond-to(sm) {
+        max-width: 30%;
+      }
+
+      @include variables.respond-to(md) {
+        max-width: 22%;
+      }
+
+      @include variables.respond-to(lg) {
+        max-width: 18%;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$main-spacing*0.5;
+    color: variables.$color-secondary;
+
+    a {
+      align-self: flex-end;
+    }
+
+    &-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: variables.$main-spacing;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.google {
+  width: 100%;
+  height: 450px;
+}
+
+.custom-marker-pin {
+  width: 32px;
+  height: 32px;
+  border-radius: 50% 50% 50% 0;
+  background-color: #fbbc04;
+  border: 2px solid #000;
+  transform: rotate(-45deg);
+  box-sizing: border-box;
+}

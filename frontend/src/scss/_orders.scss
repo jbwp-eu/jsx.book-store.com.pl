@@ -1,0 +1,30 @@
+@use "variables";
+
+.orders {
+  color: variables.$color-secondary;
+  margin-top: variables.$main-spacing;
+  display: flex;
+  flex-direction: column;
+  gap: variables.$main-spacing;
+
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$main-spacing*0.5;
+    margin-top: variables.$main-spacing;
+    color: variables.$color-secondary;
+
+    &-buttons {
+      display: flex;
+      gap: variables.$main-spacing;
+      justify-content: flex-end;
+    }
+
+    th,
+    td {
+      padding: 6px;
+      font-size: variables.$small-font-size;
+    }
+  }
+}

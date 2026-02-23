@@ -1,0 +1,37 @@
+@use "sass:map";
+@use "variables";
+
+// Responsive breakpoints use respond-to() mixin (replaces previous @media screen and (min-width: map.get(variables.$breakpoints, ...))).
+
+html {
+  font-size: variables.$small-font-size;
+  font-family: variables.$font-family;
+
+  @include variables.respond-to(sm) {
+    font-size: variables.$base-font-size;
+  }
+}
+
+strong {
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1.0rem;
+}
+
+
+p {
+  font-size: 1.0rem;
+  line-height: 150%;
+}

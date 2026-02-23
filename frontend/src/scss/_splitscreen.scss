@@ -1,0 +1,120 @@
+@use "sass:map";
+@use "variables";
+
+// Responsive breakpoints use respond-to() mixin (replaces previous @media screen and (min-width: map.get(variables.$breakpoints, ...))).
+
+.split-screen__panel {
+  flex: 1;
+  flex-basis: var(--flex-basis, auto);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  color: variables.$color-secondary;
+
+
+  @include variables.respond-to(sm) {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  &__cart {
+    margin: 0 0 variables.$main-spacing 0;
+
+    @include variables.respond-to(sm) {
+      flex-direction: column;
+
+    }
+
+    @include variables.respond-to(md) {
+      flex-direction: row;
+      gap: variables.$main-spacing;
+    }
+
+  }
+
+  &__product {
+    gap: variables.$main-spacing;
+    margin: 0 0 variables.$main-spacing 0;
+
+    &-first {
+      display: flex;
+      flex-direction: column;
+      gap: variables.$main-spacing;
+      animation: fade-slide-in-from-bottom 1s ease-out;
+    }
+
+    &-second {
+      display: flex;
+      flex-direction: column;
+      gap: variables.$main-spacing;
+      animation: fade-slide-in-from-top 1.5s ease-out;
+
+      @include variables.respond-to(sm) {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: variables.$main-spacing;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+      }
+    }
+
+    @include variables.respond-to(x-sm) {
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__order {
+    gap: variables.$main-spacing;
+    margin-bottom: variables.$main-spacing;
+
+    @include variables.respond-to(sm) {
+      gap: variables.$main-spacing*2;
+      margin-bottom: variables.$main-spacing;
+    }
+  }
+
+
+  &__profile {
+    margin-top: variables.$main-spacing;
+    gap: variables.$main-spacing*2;
+
+    @include variables.respond-to(sm) {
+      flex-direction: column;
+    }
+
+    @include variables.respond-to(xl) {
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+  }
+}
+
+
+@keyframes fade-slide-in-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(5rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-slide-in-from-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

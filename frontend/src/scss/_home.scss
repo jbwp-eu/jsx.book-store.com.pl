@@ -1,0 +1,10 @@
+@use "variables";
+
+.home {
+  margin-top: variables.$main-spacing;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: variables.$main-spacing;
+
+}

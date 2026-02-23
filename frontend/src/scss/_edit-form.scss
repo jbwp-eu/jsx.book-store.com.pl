@@ -1,0 +1,12 @@
+@use "variables";
+
+.edit-form {
+  margin-top: variables.$main-spacing;
+  display: flex;
+  flex-direction: column;
+  gap: variables.$main-spacing;
+
+  button {
+    margin-right: auto;
+  }
+}

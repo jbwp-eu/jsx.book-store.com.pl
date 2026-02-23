@@ -1,0 +1,22 @@
+@use "variables";
+
+.notification {
+  background-color: variables.$color-notification;
+  color: variables.$color-secondary-light;
+
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: variables.$main-spacing*2;
+  }
+}
+
+.error {
+  background-color: variables.$color-notification-error;
+}
+
+.success {
+  background-color: variables.$color-notification-success;
+}

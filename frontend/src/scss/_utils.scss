@@ -1,0 +1,331 @@
+@use "sass:map";
+@use "variables";
+
+// Responsive breakpoints use respond-to() mixin (replaces previous @media screen and (min-width: map.get(variables.$breakpoints, ...))).
+
+.message {
+  // margin: variables.$main-spacing auto;
+  padding: variables.$main-spacing variables.$main-spacing*0.5;
+  background-color: variables.$color-info;
+  color: variables.$color-secondary;
+  border-radius: variables.$main-spacing*0.3;
+  font-weight: 300;
+  align-self: center;
+
+
+
+
+  &__danger {
+    background-color: variables.$color-danger;
+  }
+
+  &__success {
+    background-color: variables.$color-success;
+  }
+
+  a {
+    color: variables.$color-secondary;
+  }
+
+  p {
+    margin-top: variables.$main-spacing;
+  }
+
+  @include variables.respond-to(lg) {
+    max-width: variables.$main-spacing*30;
+    // margin: variables.$main-spacing auto variables.$main-spacing 0;
+  }
+}
+
+.button {
+  border-radius: calc(variables.$main-spacing/4);
+  background: variables.$color-secondary;
+  border: 1px solid variables.$color-secondary;
+  padding: variables.$main-spacing*0.3 variables.$main-spacing*0.5;
+  color: variables.$color-secondary-light;
+  cursor: pointer;
+
+
+  @include variables.respond-to(sm) {
+    padding: variables.$main-spacing*0.4 variables.$main-spacing*0.7;
+  }
+
+
+
+  &__animation-from-left {
+    animation: fade-slide-in-from-left 1.5s ease-out forwards;
+  }
+
+  &:hover {
+    transform: scale(1.05, 1.05);
+
+  }
+
+  &:disabled {
+    background-color: variables.$color-secondary-bright;
+    border: 1px solid variables.$color-secondary-bright;
+
+
+    &:hover {
+      transform: scale(1.0, 1.0);
+
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: variables.$color-secondary-light;
+  }
+}
+
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: variables.$main-spacing*0.5;
+  margin: variables.$main-spacing*0.5 auto 0;
+  max-width: variables.$main-spacing*30;
+  width: 100%;
+  color: variables.$color-secondary;
+
+  @include variables.respond-to(sm) {
+    gap: variables.$main-spacing;
+    margin: variables.$main-spacing auto;
+
+
+  }
+
+
+  p {
+    display: flex;
+    flex-direction: column;
+    gap: variables.$main-spacing*0.5;
+
+    input,
+    textarea {
+      border-radius: variables.$main-spacing*0.3;
+      padding: variables.$main-spacing*0.5;
+      border: 1px solid variables.$color-secondary;
+
+      @include variables.respond-to(sm) {
+        padding: variables.$main-spacing*0.7;
+
+      }
+    }
+  }
+
+  h1 {
+    text-align: right;
+  }
+
+  button {
+    align-self: flex-end;
+    margin-right: 0;
+  }
+
+  button.pickImage {
+    align-self: flex-start;
+  }
+
+  img {
+    max-width: 30%;
+  }
+
+  input {
+    text-align: start;
+  }
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.redirect {
+  display: flex;
+  align-items: center;
+  gap: variables.$main-spacing*0.5;
+
+  p {
+    font-weight: 300;
+  }
+
+  a {
+    color: variables.$color-secondary;
+  }
+
+  a:hover {
+    color: variables.$color-secondary;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: variables.$main-spacing;
+  justify-content: flex-end;
+  margin-bottom: variables.$main-spacing*0.5;
+
+  button[type='button'] {
+    background-color: transparent;
+    color: variables.$color-secondary;
+
+  }
+
+  button[type='button']:hover {
+    background-color: variables.$color-secondary;
+    color: variables.$color-secondary-light;
+  }
+}
+
+.payment>form {
+  width: variables.$main-spacing*15;
+  align-items: flex-start;
+
+  h1 {
+    margin: variables.$main-spacing 0;
+  }
+
+  label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: variables.$main-spacing;
+
+  }
+}
+
+.currency {
+  color: variables.$color-secondary;
+  width: 100%;
+
+  &__bold {
+    font-weight: 500;
+  }
+}
+
+table {
+  margin: variables.$main-spacing 0 variables.$main-spacing*0.5 0;
+  width: 100%;
+  border-top: 1px solid variables.$color-secondary;
+
+  tr:nth-child(even) {
+    background-color: variables.$color-secondary-bright;
+  }
+
+  th {
+    border-bottom: 1px solid variables.$color-secondary;
+    border-right: 1px solid variables.$color-secondary;
+    padding: variables.$main-spacing*0.5;
+    font-weight: 600;
+    text-align: right;
+    width: 30%;
+  }
+
+  td {
+    border-bottom: 1px solid variables.$color-secondary;
+    text-align: center;
+    padding: variables.$main-spacing*0.5;
+    font-weight: 300;
+  }
+
+  @include variables.respond-to(lg) {
+
+    margin-top: variables.$main-spacing*0;
+    width: 100%;
+    border: 0;
+
+    tr:nth-child(even) {
+      background-color: variables.$color-secondary-bright;
+    }
+
+    th {
+      border-bottom: 1px solid variables.$color-secondary;
+      border-right: 0;
+      padding: variables.$main-spacing*0.5;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    td {
+      border-bottom: 1px solid variables.$color-secondary;
+      text-align: center;
+      vertical-align: middle;
+      padding: variables.$main-spacing*0.5;
+      font-weight: 300;
+    }
+  }
+}
+
+.checkoutSteps {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  max-width: variables.$main-spacing*30;
+  width: 100%;
+
+
+  a {
+    text-decoration: none;
+    color: variables.$color-secondary;
+  }
+}
+
+a.disabled {
+  pointer-events: 'none';
+  color: variables.$color-secondary-bright;
+  cursor: context-menu;
+}
+
+// Form validation error message (replaces inline color: red)
+.form-error {
+  color: variables.$color-danger;
+}
+
+// Icon semantic colors (replaces inline color on FaCheck, FaTimes, FaTrash)
+.icon--success {
+  color: #16a34a;
+}
+
+.icon--danger {
+  color: #b91c1c;
+}
+
+.icon--light {
+  color: variables.$color-secondary-light;
+}
+
+// Visually hidden but available to screen readers (e.g. file input)
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Table cell with constrained width and wrap
+.table-cell--wrap {
+  width: 20%;
+  text-wrap: wrap;
+}
+
+@keyframes fade-slide-in-from-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

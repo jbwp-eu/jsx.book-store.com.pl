@@ -1,0 +1,75 @@
+{
+  "auth": {
+    "notAuthenticated": "Not authenticated",
+    "noAuthorization": "No authorization",
+    "noAdmin": "No authorization as admin"
+  },
+  "user": {
+    "emailExists": "The user with the provided email address already exists",
+    "invalidData": "Invalid user data !",
+    "invalidDataShort": "Invalid user data",
+    "registered": "User registered",
+    "invalidEmailOrPassword": "Invalid email or password !",
+    "loggedIn": "You are logged in !",
+    "notFound": "User not found",
+    "updated": "User updated",
+    "profileUpdated": "User data updated",
+    "couldNotFindAny": "Could not find any users",
+    "cannotDeleteAdmin": "Cannot delete admin user",
+    "deleted": "User deleted"
+  },
+  "order": {
+    "noItems": "No order items",
+    "verifyPaymentFailed": "Failed to verify payment",
+    "quantityExceedsStock": "The quantity of ordered items \"{{title}}\" is greater than stock",
+    "created": "Order created",
+    "notFound": "Order not found",
+    "paymentNotVerified": "Payment not verified",
+    "transactionUsed": "Transaction has been used before",
+    "incorrectAmount": "Incorrect amount paid",
+    "couldNotFindAny": "Could not find any orders",
+    "markedDelivered": "Order updated as delivered",
+    "deleted": "Order deleted"
+  },
+  "product": {
+    "couldNotFindAny": "Could not find any products",
+    "notFound": "The product could not be found",
+    "updated": "Product updated",
+    "deleted": "Product deleted",
+    "sampleCreated": "Sample product created",
+    "alreadyReviewed": "Product already reviewed",
+    "reviewAdded": "Review added",
+    "couldNotFindTop": "Could not find any top products"
+  },
+  "contact": {
+    "invalidMessageData": "Invalid message data",
+    "messageSent": "Message sent",
+    "noPlaceFound": "No place found"
+  },
+  "errors": {
+    "unknown": "An unknown error occurred !"
+  },
+  "paypal": {
+    "accessTokenFailed": "Failed to get access token",
+    "verifyFailed": "Failed to verify payment"
+  },
+  "receipt": {
+    "subject": "Order confirmation",
+    "title": "Purchase Receipt",
+    "orderId": "Order ID:",
+    "purchaseDate": "Purchase Date:",
+    "items": "Items:",
+    "shipping": "Shipping:",
+    "paid": "Paid:",
+    "paymentSuccessful": "Payment successful"
+  },
+  "location": {
+    "couldNotGetLocation": "Could not get location for the specified address"
+  },
+  "upload": {
+    "invalidMimeType": "Invalid mime type!"
+  },
+  "middleware": {
+    "invalidObjectId": "Invalid ObjectId of {{id}}"
+  }
+}

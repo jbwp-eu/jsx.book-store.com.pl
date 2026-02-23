@@ -1,0 +1,75 @@
+{
+  "auth": {
+    "notAuthenticated": "Brak autoryzacji",
+    "noAuthorization": "Brak autoryzacji",
+    "noAdmin": "Brak autoryzacji jako administrator"
+  },
+  "user": {
+    "emailExists": "Użytkownik o podanym, adresie email już istnieje",
+    "invalidData": "Nieprawidłowe dane użytkownika !",
+    "invalidDataShort": "Nieprawidłowe dane użytkownika",
+    "registered": "Użytkownik zarejestrowany",
+    "invalidEmailOrPassword": "Nieprawidłowy adres e-mail lub hasło",
+    "loggedIn": "Jesteś zalogowany !",
+    "notFound": "Nie znaleziono użytkownika",
+    "updated": "Dane użytkownika zaktualizowane",
+    "profileUpdated": "Dane użytkownika zostały zaktualizowane",
+    "couldNotFindAny": "Nie udało się znaleźć żadnych użytkowników",
+    "cannotDeleteAdmin": "Nie można usunąć administratora",
+    "deleted": "Użytkownik usunięty"
+  },
+  "order": {
+    "noItems": "Brak pozycji w zamówieniu",
+    "verifyPaymentFailed": "Nie udało się zweryfikować płatności",
+    "quantityExceedsStock": "Ilość zamówionych pozycji: \"{{title}}\" jest większa niż stan magazynowy",
+    "created": "Zamówienie utworzone",
+    "notFound": "Nie znaleziono zamówienia",
+    "paymentNotVerified": "Płatność niezweryfikowana",
+    "transactionUsed": "Transakcja została już wykorzystana",
+    "incorrectAmount": "Zapłacona została nieprawidłowa kwota",
+    "couldNotFindAny": "Nie znaleziono żadnych zamówień",
+    "markedDelivered": "Zamówienie oznaczone jako dostarczone",
+    "deleted": "Zamówienie usunięte"
+  },
+  "product": {
+    "couldNotFindAny": "Nie udało się znaleźć żadnych produktów",
+    "notFound": "Nie udało się znaleźć produktu",
+    "updated": "Produkt zaktualizowany",
+    "deleted": "Produkt usunięty",
+    "sampleCreated": "Utworzono przykładowy produkt",
+    "alreadyReviewed": "Produkt już zaopiniowany",
+    "reviewAdded": "Recenzja dodana",
+    "couldNotFindTop": "Nie udało się znaleźć żadnych najlepszych produktów"
+  },
+  "contact": {
+    "invalidMessageData": "Nieprawidłowe dane wiadomości",
+    "messageSent": "Wiadomość wysłana",
+    "noPlaceFound": "Nie znaleziono miejsca"
+  },
+  "errors": {
+    "unknown": "Wystąpił nieznany błąd !"
+  },
+  "paypal": {
+    "accessTokenFailed": "Nie udało się uzyskać tokena dostępu",
+    "verifyFailed": "Nie udało się zweryfikować płatności"
+  },
+  "receipt": {
+    "subject": "Potwierdzenie zamówienia",
+    "title": "Potwierdzenie zamówienia",
+    "orderId": "Nr zamówienia",
+    "purchaseDate": "Data zamówienia",
+    "items": "Pozycje",
+    "shipping": "Dostawa",
+    "paid": "Zapłacono",
+    "paymentSuccessful": "Płatność wykonana"
+  },
+  "location": {
+    "couldNotGetLocation": "Nie można uzyskać lokalizacji dla podanego adresu"
+  },
+  "upload": {
+    "invalidMimeType": "Niewłaściwy typ mime"
+  },
+  "middleware": {
+    "invalidObjectId": "Nieprawidłowy ObjectId: {{id}}"
+  }
+}

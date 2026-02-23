@@ -1,0 +1,229 @@
+{
+  "common": {
+    "error": "Błąd !",
+    "authError": "Błąd uwierzytelnienia",
+    "errorOccurred": "Błąd !",
+    "sending": "Wysyłanie...",
+    "sendingData": "Wysyłanie danych!",
+    "sendingDataShort": "Wysyłanie danych",
+    "success": "Sukces !",
+    "goBack": "Powrót",
+    "details": "Szczegóły",
+    "update": "Aktualizuj",
+    "cancel": "Anuluj",
+    "continue": "Przejdź dalej",
+    "submitting": "Wysyłanie...",
+    "areYouSure": "Jesteś pewien ?",
+    "markAsDelivered": "Oznacz jako dostarczone"
+  },
+  "orderSummary": {
+    "title": "Podsumowanie zamówienia",
+    "items": "Wartość zamówienia",
+    "shipping": "Koszt dostawy:",
+    "tax": "Vat:",
+    "total": "Razem:",
+    "placeOrder": "Złóż zmówienie"
+  },
+  "footer": {
+    "contactForm": "Formularz kontaktowy",
+    "contact": "Kontakt",
+    "freeShipping": "Bezpłatna wysyłka",
+    "freeShippingDesc": " Bezpłatna wysyłka przy zamówieniach powyżej 200zł",
+    "moneyBack": "Gwarancja zwrotu pieniędzy",
+    "moneyBackDesc": "W ciągu 14 dni od zakupu",
+    "flexiblePayment": "Różne formy płatności",
+    "flexiblePaymentDesc": "Płać z PayPal lub Stripe"
+  },
+  "reviewForm": {
+    "writeReview": "Napisz recenzję",
+    "rating": "Ocena",
+    "select": "Wybierz ...",
+    "poor": "1 - Słaba",
+    "fair": "2 - Zadowalająca",
+    "good": "3 - Dobra",
+    "veryGood": "4 - Bardzo dobra",
+    "excellent": "5 - Doskonała",
+    "comment": "Recenzja",
+    "submit": "Prześlij",
+    "pleaseSignIn": "",
+    "signIn": "Zaloguj się",
+    "toWriteReview": " aby napisać recenzję"
+  },
+  "contact": {
+    "pleaseEnterFirstName": "Proszę wpisać imię",
+    "pleaseEnterLastName": "Proszę wpisać nazwisko",
+    "pleaseEnterEmail": "Proszę wpisać email",
+    "pleaseEnterEmailAddress": "Proszę podać adres e-mail",
+    "emailMustBeValid": "Adres e-mail musi być prawidłowym adresem",
+    "pleaseEnterMessage": "Proszę wpisać wiadomość",
+    "pleaseEnterInformation": "Proszę wpisać informację",
+    "minCharacters": "Musi mieć co najmniej 4 znaki",
+    "contact": "Kontakt",
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "message": "Wiadomość",
+    "ourLocation": "Nasza lokalizacja",
+    "send": "Wyślij"
+  },
+  "home": {
+    "books": "Książki",
+    "noProducts": "Nie ma żadnych produktów, zostaną dodane wkrótce..."
+  },
+  "order": {
+    "orderId": "Nr zamówienia: ",
+    "notCreated": "Zamówienie nie zostało utworzone",
+    "notPaid": "Nie zapłacono",
+    "paid": "Zapłacono",
+    "paidOn": "Zapłacone ",
+    "notDelivered": "Nie dostarczono",
+    "delivered": "Dostarczono",
+    "deliveredOn": "Dostarczone:",
+    "orderItems": "Zamówione pozycje",
+    "address": "Adres:",
+    "name": "Imię, nazwisko: ",
+    "method": "",
+    "payment": "Płatność:",
+    "shippingData": "Dane do dostawy"
+  },
+  "admin": {
+    "ordersList": "Lista zamówień",
+    "id": "NR",
+    "user": "UŻYTKOWNIK",
+    "date": "DATA",
+    "total": "RAZEM",
+    "paid": "ZAPŁACONE",
+    "delivered": "DOSTARCZONE",
+    "products": "Produkty",
+    "createProduct": "Utwórz produkt",
+    "title": "TYTUŁ",
+    "category": "KATEGORIA",
+    "price": "CENA",
+    "stock": "STAN MAGAZYNOWY",
+    "areYouSureProduct": "Czy jesteś pewien ?",
+    "createProductConfirm": "Czy na pewno chcesz utworzyć nowy produkt?",
+    "noProducts": "Nie ma żadnych produktów...",
+    "users": "Użytkownicy",
+    "name": "NAZWA",
+    "admin": "ADMINISTRATOR",
+    "noUsers": "Nie udało się znaleźć żadnych użytkowników",
+    "noOrders": "Nie ma żadnych zamówień",
+    "stripeDetails": "Szczegóły Stripe",
+    "editUser": "Edycja użytkownika",
+    "goBack": "Powrót"
+  },
+  "productDetail": {
+    "goBack": "Powrót",
+    "inStock": "w magazynie",
+    "outOfStock": "brak",
+    "unavailable": "Książka jest aktualnie niedostępna, będzie dostępna wkrótce..",
+    "status": "Dostępność: ",
+    "quantity": "Ilość",
+    "addToCart": "Do koszyka"
+  },
+  "payment": {
+    "title": "Metoda płatności",
+    "selectMethod": "Wybierz metodę",
+    "pleaseSelectPayment": "Proszę wybrać metodę płatności",
+    "proceed": "Przejdź dalej"
+  },
+  "shipping": {
+    "title": "Adres dostawy",
+    "pleaseEnterCity": "Proszę wpisać nazwę miasta",
+    "pleaseEnterAddress": "Proszę wpisać adres",
+    "pleaseEnterPostalCode": "Proszę wpisać kod pocztowy",
+    "pleaseEnterCountry": "Proszę wpisać kraj",
+    "address": "Ulica, nr domu",
+    "city": "Miasto",
+    "postalCode": "Kod pocztowy",
+    "country": "Kraj",
+    "continue": "Kontynuuj"
+  },
+  "cart": {
+    "title": "Koszyk",
+    "empty": "Twój koszyk jest pusty",
+    "goBack": "Powrót",
+    "subtotal": "Razem",
+    "items": "szt.",
+    "proceedToCheckout": "Przejdź dalej"
+  },
+  "userProfile": {
+    "title": "Profil Użytkownika",
+    "name": "Imię i Nazwisko",
+    "password": "Hasło",
+    "confirmPassword": "Proszę potwierdzić hasło",
+    "passwordDoNotMatch": "Hasło nie są takie same",
+    "update": "Aktualizuj"
+  },
+  "userOrders": {
+    "title": "Zamówienia Użytkownika",
+    "id": "NR",
+    "date": "DATA",
+    "total": "RAZEM",
+    "paid": "ZAPŁACONE",
+    "delivered": "DOSTARCZONE",
+    "details": "Szczegóły",
+    "noOrders": "Nie złożyłeś żadnych zamówień"
+  },
+  "userEditForm": {
+    "title": "Edycja użytkownika",
+    "name": "Nazwa",
+    "update": "Aktualizuj"
+  },
+  "userNavDropdown": {
+    "profile": "Profil"
+  },
+  "description": {
+    "reviews_one": "recenzja",
+    "reviews_few": "recenzje",
+    "reviews_many": "recenzji",
+    "reviews_other": "recenzji",
+    "price": "Cena:",
+    "description": "Opis:",
+    "reviewsTitle": "Recenzje",
+    "noReviews": "Brak recenzji"
+  },
+  "navigation": {
+    "signIn": "Login",
+    "user": "Użytkownik: ",
+    "admin": "Administrator"
+  },
+  "searchBox": {
+    "placeholder": "Szukaj produktu ...",
+    "search": "Szukaj"
+  },
+  "checkoutSteps": {
+    "shipping": "Adres dostawy",
+    "payment": "Płatność",
+    "placeOrder": "Zamówienie"
+  },
+  "stripeSuccess": {
+    "success": "Sukces",
+    "thankYou": "Dziękujemy za zamówienie"
+  },
+  "userProfileForm": {
+    "confirmPasswordPlaceholder": "Proszę potwierdzić hasło"
+  },
+  "contactValidation": {
+    "pleaseEnterLastName": "Proszę wpisać nazwisko",
+    "pleaseEnterEmail": "Proszę wpisać email",
+    "pleaseEnterMessage": "Proszę wpisać wiadomość"
+  },
+  "auth": {
+    "signIn": "Zaloguj się",
+    "signUp": "Zarejestruj się",
+    "login": "Login",
+    "register": "Zarejestruj się",
+    "newCustomer": "Nowy klient ?",
+    "alreadyHaveAccount": "Masz już konto ?",
+    "pleaseEnterEmail": "Proszę wpisać email",
+    "pleaseEnterPassword": "Proszę wpisać hasło",
+    "minChars": "Hasło musi mieć co najmniej 4 znaki",
+    "enterEmail": "Wpisz email",
+    "enterPassword": "Wpisz hasło",
+    "enterName": "Wpisz imię",
+    "pleaseEnterName": "Proszę wpisać imię",
+    "name": "Imię",
+    "password": "Hasło",
+    "cancel": "Anuluj"
+  }
+}

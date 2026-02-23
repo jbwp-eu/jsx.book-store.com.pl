@@ -1,0 +1,189 @@
+@use "sass:map";
+@use "variables";
+
+// Responsive breakpoints use respond-to() mixin (replaces previous @media screen and (min-width: map.get(variables.$breakpoints, ...))).
+
+.carousel {
+  width: 100%;
+  height: 50vh;
+
+  @include variables.respond-to(md) {
+    height: 40vh;
+  }
+
+  &__slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+
+    &-slide {
+      width: 100%;
+      height: 70%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: variables.$color-secondary-bright;
+      text-align: center;
+      // display: none;
+      opacity: 0;
+
+
+
+      @include variables.respond-to(lg) {
+        height: 100%;
+        padding-left: 12%;
+        text-align: left;
+
+      }
+
+      img {
+        height: 100%;
+        // display: none;
+        opacity: 0;
+        // transform: scale(1.1) translateX(-1rem) rotate(-5deg);
+        transform: translateX(-3rem);
+        transition: all 0.9s ease-in-out;
+      }
+    }
+
+    &-activeSlide {
+      // display: block;
+      opacity: 1;
+
+      img {
+        // display: block;
+
+        opacity: 1;
+        // transform: scale(1) translateX(0) rotate(0);
+        transform: translateX(0);
+      }
+    }
+
+    &-next {
+      position: absolute;
+      top: 35%;
+      right: 5%;
+      scale: 200%;
+      cursor: pointer;
+      color: variables.$color-secondary-light;
+
+      &:hover {
+        color: variables.$color-dark;
+      }
+    }
+
+    &-prev {
+      position: absolute;
+      top: 35%;
+      left: 5%;
+      scale: 200%;
+      cursor: pointer;
+      color: variables.$color-secondary-light;
+
+      &:hover {
+        color: variables.$color-dark;
+      }
+    }
+
+    &-title {
+      position: absolute;
+      left: 0%;
+      right: 0%;
+      bottom: 8%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+      opacity: 0;
+
+      h1,
+      h2,
+      span {
+        color: variables.$color-secondary-light;
+        margin-bottom: variables.$main-spacing*0.5;
+        transform: translateX(-3rem);
+        transition: all 0.9s ease-in-out;
+        opacity: 0;
+
+
+        @include variables.respond-to(lg) {
+          color: variables.$color-secondary;
+        }
+      }
+
+      @include variables.respond-to(lg) {
+        left: 55%;
+        right: 12%;
+        top: 33%;
+        bottom: 30%;
+        align-items: flex-start;
+      }
+
+      // @media screen and (min-width:map-get($breakpoints, lg)) {
+      //   left: 50%;
+
+      // }
+    }
+
+    &-activeTitle {
+      opacity: 1;
+
+      h1,
+      h2,
+      span {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+
+    }
+
+
+    &-dashesContainer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0%;
+      height: 30%;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: variables.$main-spacing;
+      gap: variables.$main-spacing*0.5;
+      color: variables.$color-secondary-light;
+
+
+
+      @include variables.respond-to(lg) {
+        bottom: 0;
+        height: 30%;
+        padding-left: 55%;
+        justify-content: flex-start;
+        align-items: center;
+        padding-bottom: 0;
+
+      }
+
+      // @media screen and (min-width:map-get($breakpoints, lg)) {
+      //   padding-left: 50%;
+      // }
+    }
+
+    &-dash {
+      display: inline-block;
+      box-sizing: content-box;
+      width: 30px;
+      height: 3px;
+      border: 0 solid transparent;
+      cursor: pointer;
+      background-color: variables.$color-secondary-light;
+      margin: 0;
+
+      &-active {
+        background-color: variables.$color-dark;
+      }
+    }
+  }
+}
