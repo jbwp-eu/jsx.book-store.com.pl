@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { action } from "./Authentication.jsx";
-import { setCredentials } from "../slices/authSlice";
-import { uiActions } from "../slices/uiSlice";
+import { setCredentials } from "../slices/authSlice.js";
+import { uiActions } from "../slices/uiSlice.js";
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL || "http://test-api";
 

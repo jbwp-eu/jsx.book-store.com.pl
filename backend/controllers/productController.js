@@ -64,8 +64,9 @@ export const updateProduct = async (req, res, next) => {
       throw new Error(req.t("product.notFound"));
     }
 
-    if (req.file && product.image.slice(0, 7).toString() === "uploads") {
-      fs.unlink(`uploads/${product.image.slice(8)}`, (err) => {
+    const imagePath = product.image && String(product.image);
+    if (req.file && imagePath?.slice(0, 7) === "uploads") {
+      fs.unlink(`uploads/${imagePath.slice(8)}`, (err) => {
         if (err) {
           console.log(
             `An image ${product.title} did not exist in an uploads directory`
@@ -74,10 +75,10 @@ export const updateProduct = async (req, res, next) => {
       });
     } else if (
       !req.file &&
-      product.image.slice(0, 7).toString() === "uploads" &&
-      req.body.link.slice(0, 7) === "https:/"
+      imagePath?.slice(0, 7) === "uploads" &&
+      req.body.link?.slice(0, 7) === "https:/"
     ) {
-      fs.unlink(`uploads/${product.image.slice(8)}`, (err) => {
+      fs.unlink(`uploads/${imagePath.slice(8)}`, (err) => {
         if (err) {
           console.log(
             `An image ${product.title} did not exist in an uploads directory`

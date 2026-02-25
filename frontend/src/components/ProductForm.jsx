@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 import { object, string, number } from "yup";
 import i18n from "../i18n";
 
+
 const ProductForm = ({ method, product }) => {
   const navigate = useNavigate();
 
