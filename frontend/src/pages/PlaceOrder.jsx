@@ -48,9 +48,8 @@ const PlaceOrderPage = () => {
     </div>
   );
 };
-export default PlaceOrderPage;
 
-export const action =
+const action =
   (dispatch, language) =>
   async ({ request }) => {
     let { method } = await request;
@@ -62,7 +61,7 @@ export const action =
         status: "pending",
         title: i18n.t("common.sending"),
         message: i18n.t("common.sendingData"),
-      })
+      }),
     );
 
     const token = localStorage.getItem("token");
@@ -76,7 +75,7 @@ export const action =
           Authorization: "Bearer " + token,
         },
         body: JSON.stringify(data),
-      }
+      },
     );
 
     if (!response.ok) {
@@ -86,7 +85,7 @@ export const action =
           status: "error",
           title: i18n.t("common.error"),
           message: responseData.message,
-        })
+        }),
       );
       return;
     }
@@ -99,7 +98,10 @@ export const action =
         status: "success",
         title: i18n.t("common.success"),
         message: message,
-      })
+      }),
     );
     return redirect(`/order/${createdOrder.id}/checkout`);
   };
+
+PlaceOrderPage.action = action;
+export default PlaceOrderPage;

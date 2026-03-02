@@ -9,7 +9,7 @@ import { object, string } from "yup";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
 
-const Contact = ({ onClose }) => {
+const ContactPage = ({ onClose }) => {
   const { t } = useTranslation();
 
   const [showMap, setShowMap] = useState(false);
@@ -147,9 +147,9 @@ const Contact = ({ onClose }) => {
     </>
   );
 };
-export default Contact;
 
-export const action =
+
+ const action =
   (dispatch, language) =>
   async ({ request }) => {
     const formData = await request.formData();
@@ -204,3 +204,7 @@ export const action =
       })
     );
   };
+
+
+ContactPage.action = action;
+export default ContactPage;

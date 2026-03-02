@@ -4,14 +4,13 @@ import SplitScreen from "../components/SplitScreen";
 import OrderInformation from "../components/OrderInformation";
 import OrderSummary from "../components/OrderSummary";
 import Message from "../components/Message";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCredentials } from "../slices/authSlice";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
 
-
-export const loader =
+const loader =
   (dispatch, language) =>
   async ({ params }) => {
     const { id } = params;
@@ -25,7 +24,7 @@ export const loader =
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
-      }
+      },
     );
     if (!response.ok) {
       const responseData = await response.json();
@@ -34,7 +33,7 @@ export const loader =
           status: "error",
           title: i18n.t("common.error"),
           message: responseData.message,
-        })
+        }),
       );
       return redirect("/");
     } else {
@@ -79,16 +78,12 @@ const OrderPage = () => {
       </div>
     );
   } else {
-    content = (
-      <Message>{t("order.notCreated")}</Message>
-    );
+    content = <Message>{t("order.notCreated")}</Message>;
   }
   return <>{content}</>;
 };
 
-export default OrderPage;
-
-export const action =
+const action =
   (dispatch, language) =>
   async ({ request, params }) => {
     const { id } = params;
@@ -100,7 +95,7 @@ export const action =
         status: "pending",
         title: i18n.t("common.sending"),
         message: i18n.t("common.sendingData"),
-      })
+      }),
     );
     const token = localStorage.getItem("token");
     const response = await fetch(
@@ -111,7 +106,7 @@ export const action =
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
-      }
+      },
     );
 
     if (!response.ok) {
@@ -122,7 +117,7 @@ export const action =
           status: "error",
           title: i18n.t("common.error"),
           message: responseData.message,
-        })
+        }),
       );
       return redirect("/");
     } else {
@@ -133,8 +128,13 @@ export const action =
           status: "success",
           title: i18n.t("common.success"),
           message: resData.message,
-        })
+        }),
       );
       return redirect(`/admin/ordersList`);
     }
   };
+
+OrderPage.action = action;
+OrderPage.loader = loader;
+
+export default OrderPage;

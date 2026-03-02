@@ -2,7 +2,6 @@ import { useNavigate, useLoaderData, redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../slices/cartSlice";
 import { uiActions } from "../slices/uiSlice.js";
-import { useSelector } from "react-redux";
 import { useContext } from "react";
 import { AppContext } from "../components/AppProvider.jsx";
 import { useTranslation } from "react-i18next";
@@ -16,11 +15,11 @@ import Picture from "../components/Picture";
 import Message from "../components/Message.jsx";
 import SplitScreen from "../components/SplitScreen";
 
-export const loader =
+const loader =
   (dispatch, language) =>
-  async ({ request, params }) => {
+  async ({ params }) => {
     const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/products/${params.id}?language=${language}`
+      `${import.meta.env.VITE_BACKEND_URL}/products/${params.id}?language=${language}`,
     );
 
     if (!response.ok) {
@@ -30,7 +29,7 @@ export const loader =
           status: "error",
           title: i18n.t("common.error"),
           message: responseData.message,
-        })
+        }),
       );
       return redirect("/");
     } else {
@@ -105,4 +104,5 @@ const ProductDetailPage = () => {
   return <>{content}</>;
 };
 
+ProductDetailPage.loader = loader;
 export default ProductDetailPage;

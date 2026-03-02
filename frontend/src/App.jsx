@@ -30,29 +30,11 @@ import Fallback from "./components/Fallback";
 import ErrorPage from "./pages/Error";
 import StripeFormPage from "./pages/StripeFormPage.jsx";
 import StripeSuccessPage from "./pages/StripeSuccessPage.jsx";
-
-import { loader as productsLoader } from "./pages/Home.jsx";
 import ProductDetailPage from "./pages/ProductDetail.jsx";
-import { loader as productDetailLoader } from "./pages/ProductDetail.jsx";
-import { loader as orderLoader } from "./pages/Order.jsx";
-import { loader as myOrdersLoader } from "./pages/Profile.jsx";
-import { loader as ordersLoader } from "./pages/admin/OrdersList.jsx";
-import { loader as usersLoader } from "./pages/admin/UsersList.jsx";
-import { loader as userLoader } from "./pages/admin/UserEdit.jsx";
-import { loader as productsListLoader } from "./pages/admin/ProductsList.jsx";
 import { tokenLoader } from "./utils/tokenUtils.js";
-
-import { action as manipulateProductAction } from "./components/ProductForm.jsx";
-import { action as deleteProductAction } from "./pages/admin/ProductsList.jsx";
-import { action as reviewAction } from "./components/ReviewForm.jsx";
-import { action as orderAction } from "./pages/PlaceOrder.jsx";
-import { action as deleteOrderAction } from "./pages/admin/OrdersList.jsx";
-import { action as deleteUserAction } from "./pages/admin/UsersList.jsx";
-import { action as authAction } from "./pages/Authentication.jsx";
-import { action as editUserAction } from "./pages/admin/UserEdit.jsx";
-import { action as contactAction } from "./pages/Contact.jsx";
-import { action as profileAction } from "./pages/Profile.jsx";
-import { action as deliverProductAction } from "./pages/Order.jsx";
+import ProductForm from "./components/ProductForm.jsx";
+import ReviewForm from "./components/ReviewForm.jsx";
+import ContactPage from "./pages/Contact.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -67,34 +49,34 @@ function App() {
       hydrateFallbackElement: <Fallback asOverlay />,
       id: "root",
       loader: tokenLoader,
-      action: contactAction(dispatch, language),
+      action: ContactPage.action(dispatch, language),
       children: [
         {
           index: true,
           element: <HomePage />,
           id: "products",
-          loader: productsLoader(dispatch, language),
+          loader: HomePage.loader(dispatch, language),
         },
         {
           path: "/page/:pageNumber",
           element: <HomePage />,
-          loader: productsLoader(dispatch, language),
+          loader: HomePage.loader(dispatch, language),
         },
         {
           path: "/search/:keyword",
           element: <HomePage />,
-          loader: productsLoader(dispatch, language),
+          loader: HomePage.loader(dispatch, language),
         },
         {
           path: "/search/:keyword/page/:pageNumber",
           element: <HomePage />,
-          loader: productsLoader(dispatch, language),
+          loader: HomePage.loader(dispatch, language),
         },
         {
           path: "product/:id",
           element: <ProductDetailPage />,
-          loader: productDetailLoader(dispatch, language),
-          action: reviewAction(dispatch, language),
+          loader: ProductDetailPage.loader(dispatch, language),
+          action: ReviewForm.action(dispatch, language),
         },
         {
           path: "cart",
@@ -103,12 +85,12 @@ function App() {
         {
           path: "login",
           element: <AuthenticationPage />,
-          action: authAction(dispatch, language),
+          action: AuthenticationPage.action(dispatch, language),
         },
         {
           path: "register",
           element: <RegisterPage />,
-          action: authAction(dispatch, language),
+          action: AuthenticationPage.action(dispatch, language),
         },
         {
           path: "",
@@ -125,14 +107,14 @@ function App() {
             {
               path: "placeorder",
               element: <PlaceOrderPage />,
-              action: orderAction(dispatch, language),
+              action: PlaceOrderPage.action(dispatch, language),
             },
             {
               path: "order/:id",
               id: "order",
               element: <OrderPage />,
-              loader: orderLoader(dispatch, language),
-              action: deliverProductAction(dispatch, language),
+              loader: OrderPage.loader(dispatch, language),
+              action: OrderPage.action(dispatch, language),
               children: [
                 { path: "checkout", element: <StripeFormPage /> },
                 {
@@ -144,8 +126,8 @@ function App() {
             {
               path: "profile",
               element: <ProfilePage />,
-              action: profileAction(dispatch, language),
-              loader: myOrdersLoader(dispatch, language),
+              action: ProfilePage.action(dispatch, language),
+              loader: ProfilePage.loader(dispatch, language),
             },
           ],
         },
@@ -156,38 +138,38 @@ function App() {
             {
               path: "/admin/product/:id/edit",
               element: <EditProductPage />,
-              loader: productDetailLoader(dispatch, language),
-              action: manipulateProductAction(dispatch, language),
+              loader: ProductDetailPage.loader(dispatch, language),
+              action: ProductForm.action(dispatch, language),
             },
             {
               path: "/admin/productslist",
               element: <ProductsListPage />,
-              loader: productsListLoader(dispatch, language),
-              action: deleteProductAction(dispatch, language),
+              loader: ProductsListPage.loader(dispatch, language),
+              action: ProductsListPage.action(dispatch, language),
             },
             {
               path: "/admin/productslist/:pageNumber",
               element: <ProductsListPage />,
-              loader: productsListLoader(dispatch, language),
-              action: deleteProductAction(dispatch, language),
+              loader: ProductsListPage.loader(dispatch, language),
+              action: ProductsListPage.action(dispatch, language),
             },
             {
               path: "/admin/ordersList",
               element: <OrdersListPage />,
-              loader: ordersLoader(dispatch, language),
-              action: deleteOrderAction(dispatch, language),
+              loader: OrdersListPage.loader(dispatch, language),
+              action: OrdersListPage.action(dispatch, language),
             },
             {
               path: "/admin/usersList",
               element: <UsersListPage />,
-              loader: usersLoader(dispatch, language),
-              action: deleteUserAction(dispatch, language),
+              loader: UsersListPage.loader(dispatch, language),
+              action: UsersListPage.action(dispatch, language),
             },
             {
               path: "/admin/user/:id/edit",
               element: <UserEditPage />,
-              loader: userLoader(dispatch, language),
-              action: editUserAction(dispatch, language),
+              loader: UserEditPage.loader(dispatch, language),
+              action: UserEditPage.action(dispatch, language),
             },
           ],
         },

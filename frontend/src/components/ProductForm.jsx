@@ -11,8 +11,7 @@ import { useFormik } from "formik";
 import { object, string, number } from "yup";
 import i18n from "../i18n";
 
-
-const ProductForm = ({ method, product }) => {
+const ProductForm = ({ product }) => {
   const navigate = useNavigate();
 
   const navigation = useNavigation();
@@ -228,9 +227,7 @@ const ProductForm = ({ method, product }) => {
   );
 };
 
-export default ProductForm;
-
-export const action =
+const action =
   (dispatch, language) =>
   async ({ request, params }) => {
     const method = await request.method;
@@ -249,7 +246,7 @@ export const action =
         status: "pending",
         title: i18n.t("common.sending"),
         message: i18n.t("common.sendingData"),
-      })
+      }),
     );
 
     const token = localStorage.getItem("token");
@@ -269,7 +266,7 @@ export const action =
           status: "error",
           title: i18n.t("common.error"),
           message: responseData.message,
-        })
+        }),
       );
       return redirect("/admin/productsList");
     }
@@ -279,7 +276,10 @@ export const action =
         status: "success",
         title: i18n.t("common.success"),
         message: resData.message,
-      })
+      }),
     );
     return redirect(`/product/${id}`);
   };
+
+ProductForm.action = action;
+export default ProductForm;

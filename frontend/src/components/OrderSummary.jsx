@@ -9,7 +9,6 @@ import Fallback from "./Fallback.jsx";
 import Currency from "./Currency.jsx";
 import StripePayment from "./StripePayment.jsx";
 
-
 const OrderSummary = ({ data }) => {
   const [clientSecret, setClientSecret] = useState("");
 
@@ -58,7 +57,7 @@ const OrderSummary = ({ data }) => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ amount, id }),
-          }
+          },
         );
         if (!response.ok) {
           const responseData = await response.json();
@@ -67,7 +66,7 @@ const OrderSummary = ({ data }) => {
               status: "error",
               title: t("common.error"),
               message: responseData?.message || t("common.errorOccurred"),
-            })
+            }),
           );
           setIsLoading(false);
           return;
@@ -83,7 +82,7 @@ const OrderSummary = ({ data }) => {
             status: "error",
             title: t("common.error"),
             message: err?.message || t("common.errorOccurred"),
-          })
+          }),
         );
         setIsLoading(false);
       }
@@ -92,14 +91,23 @@ const OrderSummary = ({ data }) => {
     if (paymentMethod === "Stripe" && !isPaid) {
       getClientSecret();
     }
-  }, [language, id, isPaid, paymentMethod, totalPrice, userInfoStr]);
+  }, [
+    language,
+    id,
+    isPaid,
+    paymentMethod,
+    totalPrice,
+    userInfoStr,
+    t,
+    dispatch,
+  ]);
 
   /* PayPal */
   useEffect(() => {
     async function clientIdLoader() {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/config/paypal`
+          `${import.meta.env.VITE_BACKEND_URL}/config/paypal`,
         );
         if (!response.ok) {
           dispatch(
@@ -107,7 +115,7 @@ const OrderSummary = ({ data }) => {
               status: "error",
               title: t("common.error"),
               message: t("common.authError"),
-            })
+            }),
           );
           return navigate("/");
         }
@@ -122,7 +130,7 @@ const OrderSummary = ({ data }) => {
     if (paymentMethod === "PayPal" && !isPaid) {
       clientIdLoader();
     }
-  }, [dispatch, language, navigate, isPaid, paymentMethod]);
+  }, [dispatch, language, navigate, isPaid, paymentMethod, t]);
 
   useEffect(() => {
     if (clientId) {
@@ -152,7 +160,7 @@ const OrderSummary = ({ data }) => {
             status: "pending",
             title: t("common.sending"),
             message: t("common.sendingData"),
-          })
+          }),
         );
 
         const token = localStorage.getItem("token");
@@ -166,7 +174,7 @@ const OrderSummary = ({ data }) => {
               Authorization: "Bearer " + token,
             },
             body: JSON.stringify({ ...details }),
-          }
+          },
         );
 
         if (!response.ok) {
@@ -176,7 +184,7 @@ const OrderSummary = ({ data }) => {
               status: "error",
               title: t("common.error"),
               message: responseData.message,
-            })
+            }),
           );
           return navigate(`/order/${id}`);
         }
@@ -186,7 +194,7 @@ const OrderSummary = ({ data }) => {
             status: "success",
             title: t("common.success"),
             message: responseData.message,
-          })
+          }),
         );
 
         return navigate(`/order/${id}`);
@@ -196,7 +204,7 @@ const OrderSummary = ({ data }) => {
             status: "error",
             title: t("common.error"),
             message: err?.message || t("common.errorOccurred"),
-          })
+          }),
         );
       }
     });
@@ -208,7 +216,7 @@ const OrderSummary = ({ data }) => {
         status: "error",
         title: t("common.error"),
         message: err.message,
-      })
+      }),
     );
   }
 
@@ -253,9 +261,7 @@ const OrderSummary = ({ data }) => {
       </div>
       {isAdmin && isPaid && !isDelivered && (
         <div className="order__summary-button" onClick={deliverOrderHandler}>
-          <button className="button">
-            {t("common.markAsDelivered")}
-          </button>
+          <button className="button">{t("common.markAsDelivered")}</button>
         </div>
       )}
       {/* PayPal Payment */}

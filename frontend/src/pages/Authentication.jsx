@@ -5,9 +5,7 @@ import AuthRegisterForm from "../components/AuthRegisterForm";
 
 const AuthenticationPage = () => <AuthRegisterForm />;
 
-export default AuthenticationPage;
-
-export const action =
+const action =
   (dispatch, language) =>
   async ({ request }) => {
     const data = await request.json();
@@ -34,7 +32,7 @@ export const action =
         status: "pending",
         title: i18n.t("common.sending"),
         message: i18n.t("common.sendingData"),
-      })
+      }),
     );
 
     const response = await fetch(
@@ -45,7 +43,7 @@ export const action =
           "Content-Type": "application/json",
         },
         body: JSON.stringify(authData),
-      }
+      },
     );
 
     if (!response.ok) {
@@ -55,7 +53,7 @@ export const action =
           status: "error",
           title: i18n.t("common.error"),
           message: responseData.message,
-        })
+        }),
       );
       return;
     }
@@ -79,6 +77,9 @@ export const action =
         status: "success",
         title: i18n.t("common.success"),
         message: message,
-      })
+      }),
     );
   };
+
+AuthenticationPage.action = action;
+export default AuthenticationPage;

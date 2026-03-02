@@ -10,7 +10,7 @@ import Currency from "../../components/Currency";
 import { useTranslation } from "react-i18next";
 import i18n from "../../i18n";
 
-export const loader = (dispatch, language) => async () => {
+const loader = (dispatch, language) => async () => {
   const token = localStorage.getItem("token");
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_URL}/orders?language=${language}`,
@@ -19,7 +19,7 @@ export const loader = (dispatch, language) => async () => {
         "Content-Type": "application/json",
         Authorization: "Baerer " + token,
       },
-    }
+    },
   );
   if (!response.ok) {
     const resData = await response.json();
@@ -28,7 +28,7 @@ export const loader = (dispatch, language) => async () => {
         status: "error",
         title: i18n.t("common.error"),
         message: resData.message,
-      })
+      }),
     );
     return redirect("/");
   }
@@ -54,7 +54,7 @@ const OrdersListPage = () => {
         {
           method: "delete",
           encType: "application/json",
-        }
+        },
       );
     }
   };
@@ -184,9 +184,7 @@ const OrdersListPage = () => {
                 </table>
                 <div className="orders__list-buttons">
                   <Link to={`/order/${order.id}`}>
-                    <button className="button">
-                      {t("common.details")}
-                    </button>
+                    <button className="button">{t("common.details")}</button>
                   </Link>
                   <button
                     className="button"
@@ -205,9 +203,7 @@ const OrdersListPage = () => {
   );
 };
 
-export default OrdersListPage;
-
-export const action =
+const action =
   (dispatch, language) =>
   async ({ request }) => {
     const { method } = request;
@@ -221,7 +217,7 @@ export const action =
         status: "pending",
         title: i18n.t("common.sending"),
         message: i18n.t("common.sendingData"),
-      })
+      }),
     );
 
     const response = await fetch(
@@ -232,7 +228,7 @@ export const action =
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
-      }
+      },
     );
 
     if (!response.ok) {
@@ -242,7 +238,7 @@ export const action =
           status: "error",
           title: i18n.t("common.error"),
           message: responseData.message,
-        })
+        }),
       );
       return redirect("/admin/ordersList");
     }
@@ -252,7 +248,11 @@ export const action =
         status: "success",
         title: i18n.t("common.success"),
         message: responseData.message,
-      })
+      }),
     );
     return redirect("/admin/ordersList");
   };
+
+OrdersListPage.loader = loader;
+OrdersListPage.action = action;
+export default OrdersListPage;

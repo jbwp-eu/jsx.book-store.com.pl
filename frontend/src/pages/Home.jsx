@@ -5,14 +5,15 @@ import Pagination from "../components/Pagination";
 import ProductCarousel from "../components/ProductCarousel";
 import Product from "../components/Product";
 import Meta from "../components/Meta";
+import { Home } from "lucide-react";
 
-export const loader =
+const loader =
   (dispatch, language) =>
   async ({ params }) => {
     const { pageNumber, keyword } = params;
 
     const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/products?keyword=${keyword}&pageNumber=${pageNumber}&language=${language}`
+      `${import.meta.env.VITE_BACKEND_URL}/products?keyword=${keyword}&pageNumber=${pageNumber}&language=${language}`,
     );
 
     if (!response.ok) {
@@ -37,9 +38,7 @@ const HomePage = () => {
   let content;
 
   if (!products || products.length === 0) {
-    content = (
-      <Message>{t("home.noProducts")}</Message>
-    );
+    content = <Message>{t("home.noProducts")}</Message>;
   } else {
     content = (
       <div className="products">
@@ -64,4 +63,5 @@ const HomePage = () => {
   );
 };
 
+HomePage.loader = loader;
 export default HomePage;

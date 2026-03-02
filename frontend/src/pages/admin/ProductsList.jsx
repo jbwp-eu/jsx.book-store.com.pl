@@ -6,17 +6,16 @@ import { useContext } from "react";
 import { uiActions } from "../../slices/uiSlice";
 import Message from "../../components/Message";
 import Pagination from "../../components/Pagination";
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import i18n from "../../i18n";
 
-export const loader =
+const loader =
   (dispatch, language) =>
   async ({ params }) => {
     const { pageNumber, keyword } = params;
 
     const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/products?keyword=${keyword}&pageNumber=${pageNumber}&language=${language}`
+      `${import.meta.env.VITE_BACKEND_URL}/products?keyword=${keyword}&pageNumber=${pageNumber}&language=${language}`,
     );
 
     if (!response.ok) {
@@ -26,7 +25,7 @@ export const loader =
           status: "error",
           title: i18n.t("common.error"),
           message: responseData.message,
-        })
+        }),
       );
       return redirect("/");
     } else {
@@ -178,9 +177,8 @@ const ProductsListPage = () => {
     </div>
   );
 };
-export default ProductsListPage;
 
-export const action =
+const action =
   (dispatch, language) =>
   async ({ request }) => {
     const data = await request.formData();
@@ -202,7 +200,7 @@ export const action =
             "Content-Type": "application/json",
             Authorization: "Bearer " + token,
           },
-        }
+        },
       );
 
       if (!response.ok) {
@@ -213,7 +211,7 @@ export const action =
             status: "error",
             title: i18n.t("common.error"),
             message: resData.message,
-          })
+          }),
         );
         return;
       }
@@ -225,7 +223,7 @@ export const action =
           status: "success",
           title: i18n.t("common.success"),
           message: resData.message,
-        })
+        }),
       );
 
       return redirect(`/admin/productslist/${resData.pages}`);
@@ -240,7 +238,7 @@ export const action =
             "Content-Type": "application/json",
             Authorization: "Bearer " + token,
           },
-        }
+        },
       );
 
       if (!response.ok) {
@@ -251,7 +249,7 @@ export const action =
             status: "error",
             title: i18n.t("common.error"),
             message: resData.message,
-          })
+          }),
         );
         return;
       }
@@ -263,9 +261,13 @@ export const action =
           status: "success",
           title: i18n.t("common.success"),
           message: resData.message,
-        })
+        }),
       );
 
       return redirect(`/admin/productslist/${resData.pages}`);
     }
   };
+
+ProductsListPage.loader = loader;
+ProductsListPage.action = action;
+export default ProductsListPage;
