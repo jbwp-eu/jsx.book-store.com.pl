@@ -18,6 +18,7 @@
   },
   "orderSummary": {
     "title": "Podsumowanie zamówienia",
+    "paypalSandboxBanner": "Tryb testowy – PayPal Sandbox. Prawdziwe karty nie będą obciążane.",
     "items": "Wartość zamówienia",
     "shipping": "Koszt dostawy:",
     "tax": "Vat:",

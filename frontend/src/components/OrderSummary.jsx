@@ -267,6 +267,9 @@ const OrderSummary = ({ data }) => {
       {/* PayPal Payment */}
       {!isPaid && paymentMethod === "PayPal" && (
         <div className="order__summary-paypal">
+          <div className="order__summary-paypal-banner">
+            {t("orderSummary.paypalSandboxBanner")}
+          </div>
           {isPending ? (
             <Fallback />
           ) : (

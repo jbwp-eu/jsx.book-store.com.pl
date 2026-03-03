@@ -18,6 +18,7 @@
   },
   "orderSummary": {
     "title": "Order Summary",
+    "paypalSandboxBanner": "Test mode – PayPal Sandbox. Real cards will not be charged.",
     "items": "Items:",
     "shipping": "Shipping:",
     "tax": "Tax:",

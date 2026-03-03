@@ -130,6 +130,16 @@
 
     &-paypal {
       padding: variables.$main-spacing;
+
+      &-banner {
+        background-color: #fff3cd;
+        border: 1px solid #ffc107;
+        border-radius: 4px;
+        padding: 0.5rem 0.75rem;
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+        color: #856404;
+      }
     }
 
     &-stripe {
