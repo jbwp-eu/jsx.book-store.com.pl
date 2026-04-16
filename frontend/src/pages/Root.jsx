@@ -16,11 +16,13 @@ import { logout } from "../slices/authSlice.js";
 import { getTokenDuration } from "../utils/tokenUtils.js";
 import { Suspense } from "react";
 import i18n, { appLangToI18n } from "../i18n.js";
+import { useTranslation } from "react-i18next";
 
 const RootLayout = () => {
   const dispatch = useDispatch();
   const language = useSelector((state) => state.ui.language);
   const token = useLoaderData();
+  const { t } = useTranslation();
 
   useEffect(() => {
     i18n.changeLanguage(appLangToI18n(language));
@@ -75,6 +77,11 @@ const RootLayout = () => {
       )}
 
       <Header />
+      <div className="demo-notice" role="note">
+        <Container className="container--no-vertical-padding">
+          <p>{t("footer.demoNotice")}</p>
+        </Container>
+      </div>
       <main onMouseEnter={handleAdminUserToggle}>
         {navigation.state === "loading" && <Fallback asOverlay />}
         <Container>

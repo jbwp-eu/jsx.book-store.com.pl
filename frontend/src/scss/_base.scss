@@ -32,6 +32,17 @@ main {
 
 }
 
+.demo-notice {
+  background-color: variables.$color-info;
+  border-top: 1px solid variables.$color-secondary-bright;
+  border-bottom: 1px solid variables.$color-secondary-bright;
+
+  p {
+    margin: 0;
+    padding: variables.$main-spacing * 0.5 0;
+  }
+}
+
 .container > a > button {
   margin: variables.$main-spacing 0;
 }

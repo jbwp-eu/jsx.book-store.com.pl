@@ -33,7 +33,8 @@
     "moneyBack": "Gwarancja zwrotu pieniędzy",
     "moneyBackDesc": "W ciągu 14 dni od zakupu",
     "flexiblePayment": "Różne formy płatności",
-    "flexiblePaymentDesc": "Płać z PayPal lub Stripe"
+    "flexiblePaymentDesc": "Płać z PayPal lub Stripe",
+    "demoNotice": "Aplikacja demonstracyjna — to nie jest prawdziwy sklep. Zamówienia nie są realizowane, a strona służy wyłącznie do testów."
   },
   "reviewForm": {
     "writeReview": "Napisz recenzję",

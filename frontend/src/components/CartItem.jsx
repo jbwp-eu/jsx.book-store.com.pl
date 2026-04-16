@@ -1,5 +1,5 @@
 import Image from "./Image";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from "react-router-dom";
 import { addDecimals } from "../utils/cartUtils";
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from "../slices/cartSlice";
