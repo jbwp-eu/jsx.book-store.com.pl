@@ -1,10 +1,10 @@
-# jsx.book-store.com.pl
+# [jsx.book-store.com.pl](http://jsx.book-store.com.pl)
 
 **Język:** Polski | [English](README.en.md)
 
-Sklep internetowy z książkami: katalog, koszyk, checkout, płatności Stripe / PayPal oraz panel admina. Monorepo z REST API (Express + JavaScript) i SPA React (JSX).
+Full-stackowy sklep z książkami (monorepo): SPA **React 18** + **Vite** (JSX) z **Sass**, **Redux Toolkit** i **React Router v7** (data mode); REST API **Express** z **Mongoose**, **MongoDB** i **JWT**. Płatności: **Stripe** i **PayPal**; lokalne uploady. Testy: **Vitest**, **Supertest**, **Cypress**.
 
-**Live Demo:** https://jsx.book-store.com.pl/
+**Live Demo:** [https://jsx.book-store.com.pl/](https://jsx.book-store.com.pl/)
 
 ## Co robi aplikacja
 
@@ -19,12 +19,12 @@ Sklep internetowy z książkami: katalog, koszyk, checkout, płatności Stripe /
 
 ## Stack
 
-| Warstwa | Technologie |
-|--------|-------------|
-| **Backend** | Node.js, Express 4, JavaScript (ESM), Mongoose, MongoDB, JWT, Stripe, PayPal, Multer, Nodemailer |
+| Warstwa      | Technologie                                                                                                  |
+| ------------ | ------------------------------------------------------------------------------------------------------------ |
+| **Backend**  | Node.js, Express 4, JavaScript (ESM), Mongoose, MongoDB, JWT, Stripe, PayPal, Multer, Nodemailer             |
 | **Frontend** | React 18, Vite, JSX, React Router, Redux Toolkit, MUI, Sass, Formik + Yup, i18next, Stripe.js, PayPal JS SDK |
-| **Dane** | MongoDB (Mongoose), uploady lokalne (`uploads/`) |
-| **Testy** | Vitest (unit / API), Cypress (e2e) |
+| **Dane**     | MongoDB (Mongoose), uploady lokalne (`uploads/`)                                                             |
+| **Testy**    | Vitest (unit / API), Cypress (e2e)                                                                           |
 
 ## Struktura repo
 
@@ -65,12 +65,12 @@ npm run dev
 
 Inne skrypty:
 
-| Komenda | Opis |
-|---------|------|
-| `npm run server` | backend z hot-reload (`nodemon`) |
-| `npm run client` | sam frontend (Vite) |
-| `npm start` | produkcyjny start API (serwuje też `frontend/dist`) |
-| `node backend/seeder.js -i` | import danych demo |
-| `node backend/seeder.js -d` | usunięcie produktów z seeda |
-| `npm test` | testy Vitest (backend) |
-| `npm run cypress:run --prefix frontend` | Cypress headless (`frontend`) |
+| Komenda                                 | Opis                                                |
+| --------------------------------------- | --------------------------------------------------- |
+| `npm run server`                        | backend z hot-reload (`nodemon`)                    |
+| `npm run client`                        | sam frontend (Vite)                                 |
+| `npm start`                             | produkcyjny start API (serwuje też `frontend/dist`) |
+| `node backend/seeder.js -i`             | import danych demo                                  |
+| `node backend/seeder.js -d`             | usunięcie produktów z seeda                         |
+| `npm test`                              | testy Vitest (backend)                              |
+| `npm run cypress:run --prefix frontend` | Cypress headless (`frontend`)                       |
