@@ -82,8 +82,13 @@ sudo systemctl reload caddy
 
 The activate script **must** be named `activate-release-jsx.sh`. On this VPS `activate-release-ovh.sh` belongs to gql (`/var/www/gql-book-store`).
 
+Copy from a checkout with LF line endings (`*.sh` in `.gitattributes`). Strip CR if you `scp` from Windows:
+
 ```bash
-scp -P 49152 deploy-ovh/jsx-book-store.service.example ubuntu@<OVH_HOST>:/tmp/
+scp -P 49152 deploy-ovh/activate-release.sh ubuntu@<OVH_HOST>:/tmp/
+ssh -p 49152 ubuntu@<OVH_HOST> \
+  'sudo sed -i "s/\r$//" /tmp/activate-release.sh && sudo install -m 755 /tmp/activate-release.sh /usr/local/bin/activate-release-jsx.sh'
+```
 ssh -p 49152 ubuntu@<OVH_HOST> \
   'sudo cp /tmp/jsx-book-store.service.example /etc/systemd/system/jsx-book-store.service && sudo systemctl daemon-reload && sudo systemctl enable jsx-book-store'
 
