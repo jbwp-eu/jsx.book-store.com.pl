@@ -4,18 +4,17 @@ import {
   AdvancedMarker,
   InfoWindow,
 } from "@vis.gl/react-google-maps";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Message from "./Message";
 import { useSelector } from "react-redux";
-
-// const coordinates = { lat: 52.24778, lng: 21.01526 };
 
 const GoogleMap = () => {
   const [open, setOpen] = useState(false);
   const [coordinates, setCoordinates] = useState(null);
   const [error, setError] = useState("");
   const { language } = useSelector((state) => state.ui);
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY?.trim() || "";
+  const mapId = import.meta.env.VITE_GOOGLE_MAPS_MAP_ID?.trim() || "undefined";
 
   useEffect(() => {
     const getCoordinates = async () => {
@@ -52,16 +51,29 @@ const GoogleMap = () => {
     typeof coordinates.lat === "number" &&
     typeof coordinates.lng === "number";
 
+  if (!apiKey) {
+    return (
+      <div className="google">
+        <Message variant="danger">
+          {language === "EN"
+            ? "Map is unavailable. Please configure VITE_GOOGLE_MAPS_API_KEY."
+            : "Mapa jest niedostępna. Skonfiguruj VITE_GOOGLE_MAPS_API_KEY."}
+        </Message>
+      </div>
+    );
+  }
+
   return (
     <div className="google">
       {hasValidCoordinates ? (
-        <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY_maps}>
+        <APIProvider apiKey={apiKey}>
           <Map
-            mapId={"4504f8b37365c3d0"}
-            defaultZoom={10}
+            mapId={mapId}
+            defaultZoom={15}
             defaultCenter={coordinates ?? { lat: 0, lng: 0 }}
             gestureHandling={"cooperative"}
             disableDefaultUI={false}
+            style={{ width: "100%", height: "100%" }}
           >
             <AdvancedMarker
               position={coordinates ?? { lat: 0, lng: 0 }}

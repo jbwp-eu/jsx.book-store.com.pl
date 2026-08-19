@@ -25,13 +25,16 @@ Full-stackowy sklep z książkami (monorepo): SPA **React 18** + **Vite** (JSX) 
 | **Frontend** | React 18, Vite, JSX, React Router, Redux Toolkit, MUI, Sass, Formik + Yup, i18next, Stripe.js, PayPal JS SDK |
 | **Dane**     | MongoDB (Mongoose), uploady lokalne (`uploads/`)                                                             |
 | **Testy**    | Vitest (unit / API), Cypress (e2e)                                                                           |
+| **Deploy**   | OVH VPS + Caddy ([deploy-ovh](deploy-ovh/README.pl.md))                                                       |
 
 ## Struktura repo
 
 ```
-backend/          # Express REST API + Mongoose
-frontend/         # React SPA (Vite, JSX)
-uploads/          # lokalne obrazy (dev / produkcja)
+backend/                 # Express REST API + Mongoose
+frontend/                # React SPA (Vite, JSX)
+uploads/                 # lokalne obrazy (dev / produkcja)
+deploy-ovh/              # bootstrap OVH + Caddy / systemd
+.github/workflows/       # deploy-ovh.yml
 ```
 
 **Backend** — API REST (`/api/...`), baza, auth JWT, płatności Stripe / PayPal, webhook, upload, maile.  
@@ -46,7 +49,7 @@ npm install
 npm install --prefix frontend
 ```
 
-Skonfiguruj zmienne w `.env` w katalogu głównym (m.in. `PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `JWT_SECRET`, klucze Stripe / PayPal, SMTP). Frontend w dev łączy się z API przez `VITE_BACKEND_URL` (plik `frontend/.env`).
+Skonfiguruj zmienne w `.env` w katalogu głównym (wzór: [`.env.example`](.env.example) — m.in. `PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `JWT_SECRET` min. 32 znaki, klucze Stripe / PayPal, SMTP). Frontend w dev łączy się z API przez `VITE_BACKEND_URL` (plik `frontend/.env`).
 
 Opcjonalnie zasil bazę danymi demo:
 
@@ -70,7 +73,14 @@ Inne skrypty:
 | `npm run server`                        | backend z hot-reload (`nodemon`)                    |
 | `npm run client`                        | sam frontend (Vite)                                 |
 | `npm start`                             | produkcyjny start API (serwuje też `frontend/dist`) |
+| `npm run build`                         | build frontendu (`frontend/dist`)                   |
 | `node backend/seeder.js -i`             | import danych demo                                  |
 | `node backend/seeder.js -d`             | usunięcie produktów z seeda                         |
 | `npm test`                              | testy Vitest (backend)                              |
 | `npm run cypress:run --prefix frontend` | Cypress headless (`frontend`)                       |
+
+## Deploy
+
+| Środowisko | Domena | Dokumentacja |
+| ---------- | ------ | ------------ |
+| **OVH** | `jsx.book-store.com.pl` | [deploy-ovh/README.pl.md](deploy-ovh/README.pl.md) · [EN](deploy-ovh/README.md) |

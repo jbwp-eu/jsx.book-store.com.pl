@@ -1,0 +1,10 @@
+# /etc/caddy/Caddyfile — OVH
+# Express serves API + SPA (frontend/dist) on PORT from .env.production
+
+jsx.book-store.com.pl {
+	reverse_proxy 127.0.0.1:3002 {
+		header_up Host {host}
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+	}
+}
