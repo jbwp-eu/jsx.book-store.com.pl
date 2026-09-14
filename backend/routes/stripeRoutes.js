@@ -6,8 +6,6 @@ import { sendPurchaseReceipt } from "../utils/purchaseReceipt.js";
 
 import { Order } from "../models/orderModel.js";
 
-import { t } from "../utils/translate.js";
-
 const router = express.Router();
 
 const DEFAULT_LANGUAGE = "PL";
@@ -46,14 +44,19 @@ async function markOrderPaidFromPaymentIntent(
   }
 
   const paidCorrectAmount =
-    order.totalPrice.toFixed(2) === (paymentIntent.amount / 100).toFixed(2);
+    Number(order.totalPrice).toFixed(2) ===
+    (paymentIntent.amount / 100).toFixed(2);
   if (!paidCorrectAmount) {
-    res.status(401);
-    throw new Error(t(language, "order.incorrectAmount"));
+    console.warn(
+      `[Stripe] payment_intent.succeeded: amount mismatch (orderId=${orderId}, order=${Number(order.totalPrice).toFixed(2)}, paid=${(paymentIntent.amount / 100).toFixed(2)}) — order left unpaid`
+    );
+    res.status(200).json({ received: true });
+    return;
   }
 
   order.isPaid = true;
   order.paidAt = Date.now();
+  order.stripeIntent = paymentIntent.id;
   order.paymentResult = {
     id: paymentIntent.id,
     status: "COMPLETED",
@@ -64,8 +67,11 @@ async function markOrderPaidFromPaymentIntent(
   const updatedOrder = await order.save();
 
   if (!updatedOrder) {
-    res.status(401);
-    throw new Error(t(language, "order.notFound"));
+    console.warn(
+      `[Stripe] payment_intent.succeeded: failed to save paid order (orderId=${orderId})`
+    );
+    res.status(200).json({ received: true });
+    return;
   }
 
   console.log(
@@ -80,10 +86,23 @@ router.post(
     type: "application/json",
   }),
   async (req, res, next) => {
-    const language = DEFAULT_LANGUAGE;
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_TEST_MODE);
-    const signature = req.headers["stripe-signature"];
+    const secretKey = process.env.STRIPE_SECRET_KEY_TEST_MODE;
     const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET_TEST_MODE;
+    const signature = req.headers["stripe-signature"];
+
+    if (!secretKey || !endpointSecret) {
+      res.status(500);
+      next(new Error("Stripe webhook is not configured"));
+      return;
+    }
+
+    if (!signature) {
+      res.status(400);
+      next(new Error("Missing Stripe signature"));
+      return;
+    }
+
+    const stripe = new Stripe(secretKey);
 
     try {
       const event = stripe.webhooks.constructEvent(
@@ -97,6 +116,8 @@ router.post(
       switch (event.type) {
         case "payment_intent.succeeded": {
           const paymentIntent = event.data.object;
+          const language =
+            paymentIntent.metadata?.language || DEFAULT_LANGUAGE;
           await markOrderPaidFromPaymentIntent(
             paymentIntent,
             language,

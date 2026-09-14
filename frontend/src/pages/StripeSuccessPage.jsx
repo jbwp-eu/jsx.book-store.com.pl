@@ -1,11 +1,7 @@
-import { useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams, useParams } from "react-router-dom";
-
-import { useSubmit } from "react-router-dom";
-
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { stripePromise } from "../components/StripePayment.jsx";
 
 const SuccessIcon = (
   <svg
@@ -70,26 +66,22 @@ const InfoIcon = (
 
 const STATUS_CONTENT_MAP = {
   succeeded: {
-    text: "Payment succeeded",
-    textPL: "Płatność zakończona pomyślnie",
+    textKey: "stripeSuccess.succeeded",
     iconColor: "#30B130",
     icon: SuccessIcon,
   },
   processing: {
-    text: "Your payment is processing",
-    textPL: "Płatność w toku",
+    textKey: "stripeSuccess.processing",
     iconColor: "#6D6E78",
     icon: InfoIcon,
   },
   requires_payment_method: {
-    text: "Your payment was not successful, please try again.",
-    textPL: "Twoja płatność nie powiodła się. Spróbuj ponownie.",
+    textKey: "stripeSuccess.failed",
     iconColor: "#DF1B41",
     icon: ErrorIcon,
   },
   default: {
-    text: "Something went wrong, please try again.",
-    textPL: "Wystąpił błąd. Spróbuj ponownie.",
+    textKey: "stripeSuccess.default",
     iconColor: "#DF1B41",
     icon: ErrorIcon,
   },
@@ -98,131 +90,75 @@ const STATUS_CONTENT_MAP = {
 const StripeSuccessPage = () => {
   const [searchParams] = useSearchParams();
   const [status, setStatus] = useState("processing");
-
-  const [intentId, setIntentId] = useState(null);
-  const { i18n } = useTranslation();
-  // const [metadataOrderId, setMetadataOrderId] = useState(null);
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
-
-  const stripe = useStripe();
-
-  const submit = useSubmit();
-
-  const { id: ID } = useParams();
-
-  const userInfo = localStorage.getItem("userInfo");
-
-  const { id, name, email, isAdmin } = JSON.parse(userInfo);
+  const { id: orderId } = useParams();
 
   useEffect(() => {
-    if (!stripe) {
-      return;
-    }
-
     const clientSecret = searchParams.get("payment_intent_client_secret");
-
     if (!clientSecret) {
+      setStatus("default");
       return;
     }
 
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      if (!paymentIntent) {
-        return;
-      }
+    let cancelled = false;
+    let timeoutId;
 
-      setStatus(paymentIntent.status);
-      setIntentId(paymentIntent.id);
-      // setMetadataOrderId(paymentIntent.metadata.orderId);
+    stripePromise
+      .then((stripe) => {
+        if (cancelled) {
+          return;
+        }
+        if (!stripe) {
+          setStatus("default");
+          return;
+        }
+        return stripe
+          .retrievePaymentIntent(clientSecret)
+          .then(({ paymentIntent, error }) => {
+            if (cancelled) {
+              return;
+            }
+            if (error || !paymentIntent) {
+              setStatus("default");
+              return;
+            }
 
-      const isSuccess = status === "succeeded";
+            setStatus(paymentIntent.status);
 
-      if (!isSuccess) {
-        navigate(`/order/${ID}`);
-      }
-      setTimeout(() => navigate(`/order/${ID}`), 4000);
-    });
-  }, [
-    stripe,
-    searchParams,
-    navigate,
-    status,
-    submit,
-    id,
-    name,
-    email,
-    isAdmin,
-    ID,
-  ]);
+            if (paymentIntent.status !== "succeeded") {
+              navigate(`/order/${orderId}`);
+              return;
+            }
+
+            timeoutId = setTimeout(() => navigate(`/order/${orderId}`), 4000);
+          });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setStatus("default");
+        }
+      });
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timeoutId);
+    };
+  }, [searchParams, navigate, orderId]);
+
+  const statusContent =
+    STATUS_CONTENT_MAP[status] ?? STATUS_CONTENT_MAP.default;
 
   return (
     <div id="payment-status">
       <div
         id="status-icon"
         className="stripe-status-icon"
-        style={{ "--status-icon-color": STATUS_CONTENT_MAP[status].iconColor }}
+        style={{ "--status-icon-color": statusContent.iconColor }}
       >
-        {STATUS_CONTENT_MAP[status].icon}
+        {statusContent.icon}
       </div>
-      <h2 id="status-text">
-        {i18n.language === "pl"
-          ? STATUS_CONTENT_MAP[status].textPL
-          : STATUS_CONTENT_MAP[status].text}
-      </h2>
-      {intentId && false && (
-        <div id="details-table">
-          <table>
-            <tbody>
-              <tr>
-                <td className="TableLabel">id</td>
-                <td id="intent-id" className="TableContent">
-                  {intentId}
-                </td>
-              </tr>
-              <tr>
-                <td className="TableLabel">status</td>
-                <td id="intent-status" className="TableContent">
-                  {status}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      )}
-      {intentId && false && (
-        <a
-          href={`https://dashboard.stripe.com/payments/${intentId}`}
-          id="view-details"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          View details
-          <svg
-            className="stripe-success-page__svg"
-            width="15"
-            height="14"
-            viewBox="0 0 15 14"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M3.125 3.49998C2.64175 3.49998 2.25 3.89173 2.25 4.37498V11.375C2.25 11.8582 2.64175 12.25 3.125 12.25H10.125C10.6082 12.25 11 11.8582 11 11.375V9.62498C11 9.14173 11.3918 8.74998 11.875 8.74998C12.3582 8.74998 12.75 9.14173 12.75 9.62498V11.375C12.75 12.8247 11.5747 14 10.125 14H3.125C1.67525 14 0.5 12.8247 0.5 11.375V4.37498C0.5 2.92524 1.67525 1.74998 3.125 1.74998H4.875C5.35825 1.74998 5.75 2.14173 5.75 2.62498C5.75 3.10823 5.35825 3.49998 4.875 3.49998H3.125Z"
-              fill="#0055DE"
-            />
-            <path
-              d="M8.66672 0C8.18347 0 7.79172 0.391751 7.79172 0.875C7.79172 1.35825 8.18347 1.75 8.66672 1.75H11.5126L4.83967 8.42295C4.49796 8.76466 4.49796 9.31868 4.83967 9.66039C5.18138 10.0021 5.7354 10.0021 6.07711 9.66039L12.7501 2.98744V5.83333C12.7501 6.31658 13.1418 6.70833 13.6251 6.70833C14.1083 6.70833 14.5001 6.31658 14.5001 5.83333V0.875C14.5001 0.391751 14.1083 0 13.6251 0H8.66672Z"
-              fill="#0055DE"
-            />
-          </svg>
-        </a>
-      )}
-      {false && (
-        <a id="retry-button" href={`/order/${ID}/checkout`}>
-          Test another
-        </a>
-      )}
+      <h2 id="status-text">{t(statusContent.textKey)}</h2>
     </div>
   );
 };

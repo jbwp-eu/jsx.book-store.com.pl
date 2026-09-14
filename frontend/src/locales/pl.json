@@ -200,7 +200,15 @@
   },
   "stripeSuccess": {
     "success": "Sukces",
-    "thankYou": "Dziękujemy za zamówienie"
+    "thankYou": "Dziękujemy za zamówienie",
+    "succeeded": "Płatność zakończona pomyślnie",
+    "processing": "Płatność w toku",
+    "failed": "Twoja płatność nie powiodła się. Spróbuj ponownie.",
+    "default": "Wystąpił błąd. Spróbuj ponownie."
+  },
+  "stripe": {
+    "payNow": "Zapłać teraz",
+    "unexpectedError": "Wystąpił nieoczekiwany błąd."
   },
   "userProfileForm": {
     "confirmPasswordPlaceholder": "Proszę potwierdzić hasło"

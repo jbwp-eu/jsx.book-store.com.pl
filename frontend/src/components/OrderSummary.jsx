@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useSubmit, useNavigate } from "react-router-dom";
+import { useSubmit, useNavigate, useLocation, Outlet } from "react-router-dom";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useEffect, useState } from "react";
 import { uiActions } from "../slices/uiSlice.js";
@@ -17,6 +17,8 @@ const OrderSummary = ({ data }) => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const isStripeReturn = location.pathname.includes("/stripe-payment-success");
 
   const { t } = useTranslation();
 
@@ -56,7 +58,7 @@ const OrderSummary = ({ data }) => {
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ amount, id }),
+            body: JSON.stringify({ amount, id, language }),
           },
         );
         if (!response.ok) {
@@ -88,7 +90,7 @@ const OrderSummary = ({ data }) => {
       }
     }
 
-    if (paymentMethod === "Stripe" && !isPaid) {
+    if (paymentMethod === "Stripe" && !isPaid && !isStripeReturn) {
       getClientSecret();
     }
   }, [
@@ -97,7 +99,7 @@ const OrderSummary = ({ data }) => {
     isPaid,
     paymentMethod,
     totalPrice,
-    userInfoStr,
+    isStripeReturn,
     t,
     dispatch,
   ]);
@@ -282,14 +284,21 @@ const OrderSummary = ({ data }) => {
         </div>
       )}
       {/* Stripe Payment */}
-      {!isPaid && paymentMethod === "Stripe" && (
+      {isStripeReturn ? (
         <div className="order__summary-stripe">
-          {isLoading ? (
-            <Fallback />
-          ) : (
-            <StripePayment clientSecret={clientSecret} />
-          )}
+          <Outlet />
         </div>
+      ) : (
+        !isPaid &&
+        paymentMethod === "Stripe" && (
+          <div className="order__summary-stripe">
+            {isLoading ? (
+              <Fallback />
+            ) : (
+              <StripePayment clientSecret={clientSecret} language={language} />
+            )}
+          </div>
+        )
       )}
     </div>
   );

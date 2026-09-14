@@ -54,8 +54,9 @@
     "verifyFailed": "Failed to verify payment"
   },
   "receipt": {
-    "subject": "Order confirmation",
+    "subject": "[TEST] Order confirmation — …{{shortId}}",
     "title": "Purchase Receipt",
+    "demoNotice": "Note: this is not confirmation of a real payment. This is a demo app (Stripe/PayPal test mode); orders are not fulfilled.",
     "orderId": "Order ID:",
     "purchaseDate": "Purchase Date:",
     "items": "Items:",

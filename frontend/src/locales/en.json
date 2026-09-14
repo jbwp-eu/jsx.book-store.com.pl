@@ -198,7 +198,15 @@
   },
   "stripeSuccess": {
     "success": "Success",
-    "thankYou": "Thank you for your order"
+    "thankYou": "Thank you for your order",
+    "succeeded": "Payment succeeded",
+    "processing": "Your payment is processing",
+    "failed": "Your payment was not successful, please try again.",
+    "default": "Something went wrong, please try again."
+  },
+  "stripe": {
+    "payNow": "Pay now",
+    "unexpectedError": "An unexpected error occurred."
   },
   "userProfileForm": {
     "confirmPasswordPlaceholder": "Confirm password"

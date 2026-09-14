@@ -49,8 +49,16 @@ const OrderPage = () => {
   const order = useLoaderData();
 
   useEffect(() => {
-    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    dispatch(setCredentials({ ...userInfo }));
+    const userInfoStr = localStorage.getItem("userInfo");
+    if (!userInfoStr) {
+      return;
+    }
+    try {
+      const userInfo = JSON.parse(userInfoStr);
+      dispatch(setCredentials({ ...userInfo }));
+    } catch {
+      // ignore invalid stored session
+    }
   }, [dispatch]);
 
   let content;

@@ -2,29 +2,29 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { Outlet } from "react-router-dom";
 
-const stripePromise = loadStripe(
+export const stripePromise = loadStripe(
   import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY_TEST_MODE
 );
 
-const StripePayment = ({ clientSecret }) => {
+const StripePayment = ({ clientSecret, language }) => {
   const appearance = {
     theme: "stripe",
   };
-  // Enable the skeleton loader UI for optimal loading.
   const loader = "auto";
+  const locale = language === "PL" ? "pl" : "en";
+
+  if (!clientSecret) {
+    return null;
+  }
 
   return (
-    <>
-      {clientSecret && (
-        <Elements
-          key={clientSecret}
-          options={{ clientSecret, appearance, loader }}
-          stripe={stripePromise}
-        >
-          <Outlet />
-        </Elements>
-      )}
-    </>
+    <Elements
+      key={clientSecret}
+      options={{ clientSecret, appearance, loader, locale }}
+      stripe={stripePromise}
+    >
+      <Outlet />
+    </Elements>
   );
 };
 

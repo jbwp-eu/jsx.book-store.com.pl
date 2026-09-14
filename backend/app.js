@@ -42,13 +42,16 @@ app.get("/api/config/paypal", (req, res) =>
 
 app.post("/api/create-payment-intent", async (req, res, next) => {
   try {
-    const { id, amount } = req.body;
+    const { id, amount, language } = req.body;
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_TEST_MODE);
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: "pln",
-      metadata: { orderId: id },
+      metadata: {
+        orderId: id,
+        language: language ? String(language) : "PL",
+      },
     });
 
     res.send({

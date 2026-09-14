@@ -44,9 +44,10 @@ export const sendPurchaseReceipt = async (
 
     let to = `<${to_1}>,<${to_3}>`;
 
-    let subject = t(language, "receipt.subject");
-
     const { id, totalPrice, itemsPrice, shippingPrice } = updatedOrder;
+    const shortId = String(id).substring(String(id).length - 6);
+    const subject = t(language, "receipt.subject", { shortId });
+    const demoNotice = t(language, "receipt.demoNotice");
 
     const info = await transporter.sendMail({
       from: from,
@@ -55,13 +56,16 @@ export const sendPurchaseReceipt = async (
       html: `<head>
                 <meta charset="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>Purchase Receipt</title>
+                <title>${t(language, "receipt.title")}</title>
                 <style>
                   h2 {
                     color: gray;
                   }
                   section {
                     padding: 5px;
+                  }
+                  p {
+                    color: grey;
                   }
                   table {
                     width: 90%;
@@ -87,6 +91,7 @@ export const sendPurchaseReceipt = async (
             <body>
               <section>
                 <h2>${t(language, "receipt.title")}</h2>
+                <p>${demoNotice}</p>
                 <table>
                   <tr>
                     <th>${t(language, "receipt.orderId")}</th>
