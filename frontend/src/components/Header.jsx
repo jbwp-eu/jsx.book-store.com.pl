@@ -24,11 +24,17 @@ const Header = () => {
             <nav className="main-header__nav">
               <Navigation />
             </nav>
-            <div className="main-header__menu-btn" onClick={handleToggle}>
+            <button
+              type="button"
+              className={`main-header__menu-btn${toggler ? " main-header__menu-btn--open" : ""}`}
+              onClick={handleToggle}
+              aria-expanded={toggler}
+              aria-label={toggler ? "Close menu" : "Open menu"}
+            >
               <span />
               <span />
               <span />
-            </div>
+            </button>
           </div>
           {toggler && (
             <div className="main-header__bottom-nav">

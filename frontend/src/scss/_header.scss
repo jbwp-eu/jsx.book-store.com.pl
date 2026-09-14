@@ -42,21 +42,46 @@
   }
 
   &__menu-btn {
-    height: variables.$main-spacing*1.6;
+    position: relative;
+    width: variables.$main-spacing * 1.6;
+    height: variables.$main-spacing * 1.6;
+    padding: 0;
     background-color: transparent;
     border: none;
     display: flex;
-    flex-direction: column;
-
-    justify-content: space-around;
-
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 
     span {
-      display: inline-block;
-      width: variables.$main-spacing*1.6;
-      height: variables.$main-spacing*0.15;
+      position: absolute;
+      display: block;
+      width: variables.$main-spacing * 1.6;
+      height: variables.$main-spacing * 0.15;
       background-color: variables.$color-secondary-light;
+      transition: transform 0.25s ease, opacity 0.2s ease;
+    }
+
+    span:nth-child(1) {
+      transform: translateY(variables.$main-spacing * -0.45);
+    }
+
+    span:nth-child(3) {
+      transform: translateY(variables.$main-spacing * 0.45);
+    }
+
+    &--open {
+      span:nth-child(1) {
+        transform: rotate(45deg);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: rotate(-45deg);
+      }
     }
 
     @include variables.respond-to(lg) {
